@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  get 'nonprofits/home'
-
-  get 'nonprofits/loi_form'
-
   devise_for :users
 
   get '/' => 'nonprofits#home'
+  get '/letter_of_interest' => 'nonprofits#loi_form'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
