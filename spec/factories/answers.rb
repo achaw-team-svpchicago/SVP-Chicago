@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :answer do
-    loi_id 1
-    question "MyText"
-    answer "MyText"
+    association :loi_form
+    question { Faker::Lorem.sentence(3) }
+    answer { Faker::Lorem.sentence(5) }
   end
 end

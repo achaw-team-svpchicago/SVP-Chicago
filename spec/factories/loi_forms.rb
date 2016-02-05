@@ -2,7 +2,11 @@
 
 FactoryGirl.define do
   factory :loi_form do
-    name "MyString"
-    email "MyString"
+    name { Faker::Company.name }
+    email { Faker::Internet.email}
+
+    after (:build) do |loi_form|
+      loi_form.answers << FactoryGirl.build(:answer, loi_form: loi_form)
+    end
   end
 end
