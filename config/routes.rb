@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'loi_forms#index'
+  root 'nonprofits#home'
+  get '/letter_of_interest' => 'nonprofits#loi_form'
 
   get '/loi_forms' => 'loi_forms#index'
   get '/loi_forms/:id' => 'loi_forms#show'
