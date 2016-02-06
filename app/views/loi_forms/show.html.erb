@@ -1,0 +1,10 @@
+<h2><%= @loi_form.name %></h2>
+
+<%= link_to @loi_form.email, @loi_form.email %> <br><br>
+
+<% @loi_form.answers.each do |answer| %>
+  <span>
+    <b><%= answer.question %>:</b>
+    <i><%= answer.answer %></i>
+  </span><br>
+<% end %>
