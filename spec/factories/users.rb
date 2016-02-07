@@ -7,11 +7,11 @@ FactoryGirl.define do
     password { Faker::Lorem.characters(10) }
 
     factory :admin do
-      role "admin"
+       admin true
     end
 
     factory :super_admin do
-      role "super-admin"
+      super_admin true
     end
   end
 end
