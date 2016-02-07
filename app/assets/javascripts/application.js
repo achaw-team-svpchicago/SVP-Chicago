@@ -14,5 +14,6 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require angular
+//= reauire angular-animate
 //= require app
 //= require_tree .
