@@ -90,7 +90,7 @@ RSpec.describe LoiFormsController, :type => :controller do
       end
     end
 
-    context 'User is an SVP super-admin' do
+    context 'User is an SVP super_admin' do
       before :each do
         @user = FactoryGirl.create(:super_admin)
         sign_in @user
