@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/' => 'nonprofits#home'
+  root 'nonprofits#home'
   get '/letter_of_interest' => 'nonprofits#loi_form'
+
+  get '/loi_forms' => 'loi_forms#index'
+  get '/loi_forms/:id' => 'loi_forms#show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
