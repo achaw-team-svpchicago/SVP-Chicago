@@ -10,7 +10,8 @@
 
 
 <div class="container">
-  <%= link_to "Log in", "/users/sign_in" %>
+  <%= render 'devise/menu/registration_items' %>
+  <%= render 'devise/menu/login_items' %>
   <%= yield %>
 </div>
 
