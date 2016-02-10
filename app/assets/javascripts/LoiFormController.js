@@ -2,13 +2,14 @@
 
 (function() {
   "use strict";
-  angular.module('app').controller('LoiFormController', ["$scope", "$uibModal", function($scope, $uibModal) {
+  angular.module('app').controller('LoiFormController', ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
 
     $scope.setup = function() {
-      $scope.sampleLoi = {
-        name: "The something foundation"
-      };
-      $scope.items = ['item1', 'item2', 'item3'];
+      var loiFormId = parseInt(window.location.pathname.split("/")[2]);
+      var url = "/api/v1/loi_forms/" + loiFormId;
+      $http.get(url).then(function(response) {
+        $scope.loiForm = response.data;
+      });
     };
 
     $scope.openRatingModal = function() {
