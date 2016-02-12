@@ -4,7 +4,77 @@
             <h3 class="modal-title">Rate {{ loiForm.name }}</h3>
         </div>
         <div class="modal-body">
-
+            <table>
+                <tr>
+                    <td class="col-md-6"><h4>Fit with SVP's Criteria</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="ratings[0]" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings[0]" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings[0]" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings[0]" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings[0]" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>SVP's Potential Impact</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings[1]" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings[1]" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings[1]" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings[1]" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings[1]" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>Level of Excitement</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings[2]" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings[2]" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings[2]" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings[2]" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings[2]" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>Benefit to SVP Chicago</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings[3]" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings[3]" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings[3]" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings[3]" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings[3]" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>Invite to Submit RFP?</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings[4]" uib-btn-radio="'Yes'">Yes</label>
+                                <label class="btn btn-default" ng-model="ratings[4]" uib-btn-radio="'Maybe'">Maybe</label>
+                                <label class="btn btn-default" ng-model="ratings[4]" uib-btn-radio="'No'">No</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="submitRating()">Submit</button>

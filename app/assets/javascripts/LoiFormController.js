@@ -17,10 +17,10 @@
         animation: true,
         templateUrl: 'loiModalContent.html',
         controller: 'LoiModalCtrl',
-        size: "lg",
+        size: "md",
         resolve: {
           loiForm: function() {
-            return $scope.sampleLoi;
+            return $scope.loiForm;
           }
         }
       });
@@ -36,18 +36,16 @@
   angular.module('app').controller('LoiModalCtrl', function($scope, $uibModalInstance, loiForm) {
 
     $scope.loiForm = loiForm;
-    // $scope.items = items;
-    // $scope.selected = {
-    //   item: $scope.items[0]
-    // };
+    $scope.ratings = [0, 0, 0, 0, 0];
 
     $scope.submitRating = function() {
-      $uibModalInstance.close(/* $scope.selected.item */);
+      $uibModalInstance.close($scope.ratings);
     };
 
     $scope.cancelRating = function() {
       $uibModalInstance.dismiss('cancel');
     };
 
+    window.$scope = $scope;
   });
 })();
