@@ -5,10 +5,15 @@
   angular.module('app').controller('LoiFormController', ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
 
     $scope.setup = function() {
-      var loiFormId = parseInt(window.location.pathname.split("/")[2]);
-      var url = "/api/v1/loi_forms/" + loiFormId;
+      $scope.loiFormId = parseInt(window.location.pathname.split("/")[2]);
+      var url = "/api/v1/loi_forms/" + $scope.loiFormId;
       $http.get(url).then(function(response) {
-        $scope.loiForm = response.data;
+        $scope.loiForm = response.data.loi_form;
+        $scope.modalData = {
+          loiFormId: $scope.loiFormId,
+          loiName: $scope.loiForm.name,
+          userId: response.data.user_id
+        };
       });
     };
 
@@ -19,24 +24,38 @@
         controller: 'LoiModalCtrl',
         size: "md",
         resolve: {
-          loiForm: function() {
-            return $scope.loiForm;
+          modalData: function() {
+            return $scope.modalData;
           }
         }
       });
 
       modalInstance.result.then(function(submittedRatings) {
-        console.log(submittedRatings);
+        var ratings = {ratings: submittedRatings};
+        var url = "/api/v1/loi_forms/" + $scope.loiFormId;
+        $http.post(url, ratings).then(function(response) {
+          console.log(response);
+        }, function(errors) {
+          console.log(errors);
+        });
       });
     };
 
     window.$scope = $scope;
   }]);
 
-  angular.module('app').controller('LoiModalCtrl', function($scope, $uibModalInstance, loiForm) {
+  angular.module('app').controller('LoiModalCtrl', function($scope, $uibModalInstance, modalData) {
 
-    $scope.loiForm = loiForm;
-    $scope.ratings = [0, 0, 0, 0, 0];
+    $scope.loiName = modalData.loiName;
+    $scope.ratings = {
+      userId: modalData.userId,
+      loiFormId: modalData.loiFormId,
+      "q1": 0,
+      "q2": 0,
+      "q3": 0,
+      "q4": 0,
+      "q5": 0
+    };
 
     $scope.submitRating = function() {
       $uibModalInstance.close($scope.ratings);
