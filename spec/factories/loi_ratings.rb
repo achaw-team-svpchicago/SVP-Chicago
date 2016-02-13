@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   factory :loi_rating do
-    user_id 1
-    loi_form_id ""
+    association :loi_form
+    association :user
     q1_rating 1
     q2_rating 1
     q3_rating 1
-    q4_rating 1
-    q5_rating "MyString"
+    q4_rating 5
+    q5_rating "Maybe"
   end
 end
