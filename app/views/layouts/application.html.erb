@@ -8,11 +8,12 @@
 </head>
 <body>
 
-
-<div class="container">
+<div class="container" ng-app="app">
   <!-- # <%= render 'devise/menu/registration_items' %> -->
   <%= render 'devise/menu/login_items' %>
   <%= yield %>
+  <!-- <%= console %> for bug-fixing--> 
+
 </div>
 
 </body>

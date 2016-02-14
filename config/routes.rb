@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   get '/loi_forms' => 'loi_forms#index'
   get '/loi_forms/:id' => 'loi_forms#show'
 
+  namespace :api do
+    namespace :v1 do
+      get '/loi_forms/:id' => 'loi_forms#show'
+      post '/loi_forms/:id' => 'loi_forms#create_loi_rating'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

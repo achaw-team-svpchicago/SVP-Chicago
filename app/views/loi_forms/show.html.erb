@@ -1,10 +1,102 @@
-<h2><%= @loi_form.name %></h2>
+<div ng-controller="LoiFormController" ng-init="setup()">
+    <script type="text/ng-template" id="loiModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Rate {{ loiName }}</h3>
+        </div>
+        <div class="modal-body">
+            <table>
+                <tr>
+                    <td class="col-md-6"><h4>Fit with SVP's Criteria</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="ratings['q1']" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings['q1']" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings['q1']" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings['q1']" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings['q1']" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-4" ng-if="invalid[1]"><h5>Field Required!</h5></td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>SVP's Potential Impact</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings['q2']" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings['q2']" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings['q2']" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings['q2']" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings['q2']" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-4" ng-if="invalid[2]"><h5>Field Required!</h5></td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>Level of Excitement</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings['q3']" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings['q3']" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings['q3']" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings['q3']" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings['q3']" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-4" ng-if="invalid[3]"><h5>Field Required!</h5></td>
+                </tr>
+                <tr>
+                    <td class="col-md-6"><h4>Benefit to SVP Chicago</h4></td>
+                    <td class="col-md-6">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings['q4']" uib-btn-radio="1">1</label>
+                                <label class="btn btn-default" ng-model="ratings['q4']" uib-btn-radio="2">2</label>
+                                <label class="btn btn-default" ng-model="ratings['q4']" uib-btn-radio="3">3</label>
+                                <label class="btn btn-default" ng-model="ratings['q4']" uib-btn-radio="4">4</label>
+                                <label class="btn btn-default" ng-model="ratings['q4']" uib-btn-radio="5">5</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-4" ng-if="invalid[4]"><h5>Field Required!</h5></td>
+                </tr>
+                <tr>
+                    <td class="col-md-4"><h4>Invite to Submit RFP?</h4></td>
+                    <td class="col-md-4">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <label class="btn btn-default" ng-model="ratings['q5']" uib-btn-radio="'Yes'">Yes</label>
+                                <label class="btn btn-default" ng-model="ratings['q5']" uib-btn-radio="'Maybe'">Maybe</label>
+                                <label class="btn btn-default" ng-model="ratings['q5']" uib-btn-radio="'No'">No</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-md-4" ng-if="invalid[5]"><h5>Field Required!</h5></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="submitRating()">Submit</button>
+            <button class="btn btn-warning" type="button" ng-click="cancelRating()">Cancel</button>
+        </div>
+    </script>
 
-<%= link_to @loi_form.email, @loi_form.email %> <br><br>
-
-<% @loi_form.answers.each do |answer| %>
-  <span>
-    <b><%= answer.question %>:</b>
-    <i><%= answer.answer %></i>
-  </span><br>
-<% end %>
+    <h2>{{ loiForm.name }}
+    <button type="button" class="btn btn-default" ng-click="openRatingModal()" ng-if="!ratedByUser">Rate</button></h2>
+    <p>{{ loiForm.email }}</p><br>
+    <div ng-if="ratedByUser">
+        <h5><b>Your total rating of {{ loiForm.name }}:</b> {{ userAverageRating }}/5</h5>
+        <h5><b>You opted to invite {{ loiForm.name }} to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
+    </div>
+    <br>
+    <span ng-repeat="answer in loiForm.answers">
+        <b>{{ answer.question }}: </b>
+        <i>{{ answer.answer }}</i><br>
+    </span>
+</div>
