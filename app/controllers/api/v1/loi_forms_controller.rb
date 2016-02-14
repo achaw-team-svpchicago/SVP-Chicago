@@ -2,7 +2,7 @@ class Api::V1::LoiFormsController < ApplicationController
 
   def show
     loi_form = LoiForm.find_by(id: params[:id])
-    loi_rating = loi_form.loi_ratings.find_by(user_id: current_user)
+    loi_rating = loi_form.loi_ratings.find_by(user_id: current_user.id)
     api_package = {
       user: {
         rated: loi_form.rated_by?(current_user),

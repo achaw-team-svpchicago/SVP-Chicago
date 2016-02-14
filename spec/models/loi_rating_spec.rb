@@ -21,4 +21,19 @@ RSpec.describe LoiRating, :type => :model do
     loi_rating = FactoryGirl.build(:loi_rating, q5_rating: "Ham Sandwich")
     expect(loi_rating).to_not be_valid
   end
+
+  describe 'average' do
+    before :each do
+      @loi_rating = FactoryGirl.create(:loi_rating)
+    end
+    
+    it 'returns a float' do
+      expect(@loi_rating.average).to be_kind_of(Float)
+    end
+
+    it 'returns the average of the four ratings' do
+      loi_rating = FactoryGirl.create(:loi_rating, q1_rating: 1, q2_rating: 2, q3_rating: 1, q4_rating: 2)
+      expect(loi_rating.average).to eq(1.5)
+    end
+  end
 end

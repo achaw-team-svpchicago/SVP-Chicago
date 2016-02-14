@@ -10,6 +10,6 @@ class LoiRating < ActiveRecord::Base
 
   def average
     sum = q1_rating + q2_rating + q3_rating + q4_rating
-    (sum / 4.0).round(2)
+    sum / 4.0
   end
 end
