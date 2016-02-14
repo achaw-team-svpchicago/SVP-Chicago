@@ -64,8 +64,19 @@
       "q5": 0
     };
 
+    $scope.invalid = [];
+    
     $scope.submitRating = function() {
-      $uibModalInstance.close($scope.ratings);
+      var validEntry = true;
+      for (var i = 1; i < 6; i++) {
+        if ($scope.ratings["q" + i] === 0) {
+          $scope.invalid[i] = true;
+          validEntry = false;
+        }
+      }
+      if (validEntry) {
+        $uibModalInstance.close($scope.ratings);
+      }
     };
 
     $scope.cancelRating = function() {
