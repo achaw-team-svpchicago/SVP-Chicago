@@ -2,14 +2,23 @@ class Api::V1::LoiFormsController < ApplicationController
 
   def show
     loi_form = LoiForm.find_by(id: params[:id])
-    render json: {
-      user_id: current_user.id,
+    loi_rating = loi_form.loi_ratings.find_by(user_id: current_user)
+    api_package = {
+      user: {
+        rated: loi_form.rated_by?(current_user),
+        user_id: current_user.id
+      },
       loi_form: {
         name: loi_form.name,
         email: loi_form.email,
         answers: loi_form.answers
       }
     }
+    if loi_rating
+      api_package[:user][:average_rating] = loi_rating.average
+      api_package[:user][:invited] = loi_rating.q5_rating
+    end
+    render json: api_package
   end
 
   def create_loi_rating
@@ -23,7 +32,11 @@ class Api::V1::LoiFormsController < ApplicationController
       q4_rating: new_ratings[:q4],
       q5_rating: new_ratings[:q5]
     })
-    puts loi_rating.save
-    render json: nil
+    if loi_rating.save
+      render json: {
+        average_rating: loi_rating.average,
+        invited: loi_rating.q5_rating
+      }
+    end
   end
 end

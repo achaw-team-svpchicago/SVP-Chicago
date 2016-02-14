@@ -9,11 +9,15 @@
       var url = "/api/v1/loi_forms/" + $scope.loiFormId;
       $http.get(url).then(function(response) {
         $scope.loiForm = response.data.loi_form;
+        $scope.ratedByUser = response.data.user.rated;
+        $scope.userAverageRating = response.data.user.average_rating;
+        $scope.userInvitedNonProfit = response.data.user.invited;
         $scope.modalData = {
           loiFormId: $scope.loiFormId,
           loiName: $scope.loiForm.name,
-          userId: response.data.user_id
+          userId: response.data.user.user_id
         };
+        console.log(response);
       });
     };
 
@@ -34,12 +38,15 @@
         var ratings = {ratings: submittedRatings};
         var url = "/api/v1/loi_forms/" + $scope.loiFormId;
         $http.post(url, ratings).then(function(response) {
-          console.log(response);
+          $scope.ratedByUser = true;
+          $scope.userAverageRating = response.data.average_rating;
+          $scope.userInvitedNonProfit = response.data.invited;
         }, function(errors) {
           console.log(errors);
         });
       });
     };
+    
 
     window.$scope = $scope;
   }]);

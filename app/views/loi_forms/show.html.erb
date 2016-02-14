@@ -1,7 +1,7 @@
 <div ng-controller="LoiFormController" ng-init="setup()">
     <script type="text/ng-template" id="loiModalContent.html">
         <div class="modal-header">
-            <h3 class="modal-title">Rate {{ loiForm.name }}</h3>
+            <h3 class="modal-title">Rate {{ loiName }}</h3>
         </div>
         <div class="modal-body">
             <table>
@@ -83,10 +83,13 @@
     </script>
 
     <h2>{{ loiForm.name }}
-    <button type="button" class="btn btn-default" ng-click="openRatingModal()">Rate</button></h2>
-
-    <p>{{ loiForm.email }}</p> <br>
-
+    <button type="button" class="btn btn-default" ng-click="openRatingModal()" ng-if="!ratedByUser">Rate</button></h2>
+    <p>{{ loiForm.email }}</p><br>
+    <div ng-if="ratedByUser">
+        <h5><b>Your total rating of {{ loiForm.name }}:</b> {{ userAverageRating }}/5</h5>
+        <h5><b>You opted to invite {{ loiForm.name }} to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
+    </div>
+    <br>
     <span ng-repeat="answer in loiForm.answers">
         <b>{{ answer.question }}: </b>
         <i>{{ answer.answer }}</i><br>
