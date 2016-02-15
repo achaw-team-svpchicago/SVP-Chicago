@@ -22,7 +22,7 @@ Answer.create({
   })
 Answer.create({
   loi_form_id: form.id,
-  question: "Website":
+  question: "Website",
   answer: "www.cancerfund.org"
   })
 Answer.create({
@@ -72,7 +72,7 @@ Answer.create({
   })
 Answer.create({
   loi_form_id: form.id,
-  question: "Website":
+  question: "Website",
   answer: "http://www.caringforourchildrenfoundation.org"
   })
 Answer.create({
@@ -122,7 +122,7 @@ Answer.create({
   })
 Answer.create({
   loi_form_id: form.id,
-  question: "Website":
+  question: "Website",
   answer: "http://www.childprotectionprogram.org"
   })
 Answer.create({
