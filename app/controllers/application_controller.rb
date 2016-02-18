@@ -6,4 +6,12 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     '/loi_forms'
   end
+
+  protected
+
+  def authenticate_user!
+    unless user_signed_in?
+      redirect_to '/'
+    end
+  end
 end
