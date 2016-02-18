@@ -1,4 +1,5 @@
 class Api::V1::LoiFormsController < ApplicationController
+  before_action :authenticate_user! 
 
   def show
     @loi_form = LoiForm.find_by(id: params[:id])
