@@ -4,4 +4,8 @@ class NonprofitsController < ApplicationController
 
   def loi_form
   end
+
+  def create
+    
+  end
 end
