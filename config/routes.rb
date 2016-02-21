@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
 
   root 'nonprofits#home'
+
+  devise_for :users
+
+  get '/admin_panel' => 'admin_panel#show'
+
   get '/letter_of_interest' => 'nonprofits#loi_form'
 
   get '/loi_forms' => 'loi_forms#index'

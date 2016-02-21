@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
       redirect_to '/'
     end
   end
+
+  def authenticate_super_admin!
+    unless current_user.super_admin
+      redirect_to '/'
+    end
+  end
 end
