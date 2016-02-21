@@ -1,4 +1,4 @@
-<div ng-controller="LoiFormController" ng-init="setup()">
+<div ng-controller="LoiFormController" ng-init="setup(<%= params[:id] %>, <%= current_user.id %>)">
     <script type="text/ng-template" id="loiModalContent.html">
         <div class="modal-header">
             <h3 class="modal-title">Rate {{ loiName }}</h3>
@@ -18,7 +18,6 @@
                             </div>
                         </div>
                     </td>
-                    <td class="col-md-4" ng-if="invalid[1]"><h5>Field Required!</h5></td>
                 </tr>
                 <tr>
                     <td class="col-md-6"><h4>SVP's Potential Impact</h4></td>
@@ -33,7 +32,6 @@
                             </div>
                         </div>
                     </td>
-                    <td class="col-md-4" ng-if="invalid[2]"><h5>Field Required!</h5></td>
                 </tr>
                 <tr>
                     <td class="col-md-6"><h4>Level of Excitement</h4></td>
@@ -48,7 +46,6 @@
                             </div>
                         </div>
                     </td>
-                    <td class="col-md-4" ng-if="invalid[3]"><h5>Field Required!</h5></td>
                 </tr>
                 <tr>
                     <td class="col-md-6"><h4>Benefit to SVP Chicago</h4></td>
@@ -63,7 +60,6 @@
                             </div>
                         </div>
                     </td>
-                    <td class="col-md-4" ng-if="invalid[4]"><h5>Field Required!</h5></td>
                 </tr>
                 <tr>
                     <td class="col-md-4"><h4>Invite to Submit RFP?</h4></td>
@@ -76,14 +72,14 @@
                             </div>
                         </div>
                     </td>
-                    <td class="col-md-4" ng-if="invalid[5]"><h5>Field Required!</h5></td>
                 </tr>
             </table>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="submitRating()">Submit</button>
+            <button class="btn btn-primary" type="button" ng-click="submitRating(ratings)">Submit</button>
             <button class="btn btn-warning" type="button" ng-click="cancelRating()">Cancel</button>
+            <h4 id="invalid-text" ng-if="invalid">All fields required!</h4>
         </div>
     </script>
 

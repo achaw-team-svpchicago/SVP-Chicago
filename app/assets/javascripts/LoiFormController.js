@@ -4,20 +4,18 @@
   "use strict";
   angular.module('app').controller('LoiFormController', ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
 
-    $scope.setup = function() {
-      $scope.loiFormId = parseInt(window.location.pathname.split("/")[2]);
-      var url = "/api/v1/loi_forms/" + $scope.loiFormId;
+    $scope.setup = function(loiFormId, userId) {
+      var url = "/api/v1/loi_forms/" + loiFormId;
       $http.get(url).then(function(response) {
         $scope.loiForm = response.data.loi_form;
         $scope.ratedByUser = response.data.user.rated;
         $scope.userAverageRating = response.data.user.average_rating;
         $scope.userInvitedNonProfit = response.data.user.invited;
         $scope.modalData = {
-          loiFormId: $scope.loiFormId,
+          loiFormId: loiFormId,
           loiName: $scope.loiForm.name,
-          userId: response.data.user.user_id
+          userId: userId
         };
-        console.log(response);
       });
     };
 
@@ -34,24 +32,17 @@
         }
       });
 
-      modalInstance.result.then(function(submittedRatings) {
-        var ratings = {ratings: submittedRatings};
-        var url = "/api/v1/loi_forms/" + $scope.loiFormId;
-        $http.post(url, ratings).then(function(response) {
-          $scope.ratedByUser = true;
-          $scope.userAverageRating = response.data.average_rating;
-          $scope.userInvitedNonProfit = response.data.invited;
-        }, function(errors) {
-          console.log(errors);
-        });
+      modalInstance.result.then(function(modalResponse) {
+        $scope.ratedByUser = true;
+        $scope.userAverageRating = modalResponse.average_rating;
+        $scope.userInvitedNonProfit = modalResponse.invited;
       });
     };
-    
 
     window.$scope = $scope;
   }]);
 
-  angular.module('app').controller('LoiModalCtrl', function($scope, $uibModalInstance, modalData) {
+  angular.module('app').controller('LoiModalCtrl', ["$scope", "$http", "$uibModalInstance", "modalData", function($scope, $http, $uibModalInstance, modalData) {
 
     $scope.loiName = modalData.loiName;
     $scope.ratings = {
@@ -64,25 +55,21 @@
       "q5": 0
     };
 
-    $scope.invalid = [];
-    
-    $scope.submitRating = function() {
-      var validEntry = true;
-      for (var i = 1; i < 6; i++) {
-        if ($scope.ratings["q" + i] === 0) {
-          $scope.invalid[i] = true;
-          validEntry = false;
-        }
-      }
-      if (validEntry) {
-        $uibModalInstance.close($scope.ratings);
-      }
+    $scope.submitRating = function(submittedRatings) {
+      var ratings = {ratings: submittedRatings};
+      var url = "/api/v1/loi_forms/" + $scope.loiFormId;
+      $http.post(url, ratings).success(function(response) {
+        $uibModalInstance.close(response);
+      }).error(function(response) {
+        $scope.invalid = true;
+        console.log(response);
+      });
     };
-
+    
     $scope.cancelRating = function() {
       $uibModalInstance.dismiss('cancel');
     };
 
     window.$scope = $scope;
-  });
+  }]);
 })();

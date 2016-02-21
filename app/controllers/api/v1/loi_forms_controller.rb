@@ -1,24 +1,9 @@
 class Api::V1::LoiFormsController < ApplicationController
+  before_action :authenticate_user! 
 
   def show
-    loi_form = LoiForm.find_by(id: params[:id])
-    loi_rating = loi_form.loi_ratings.find_by(user_id: current_user.id)
-    api_package = {
-      user: {
-        rated: loi_form.rated_by?(current_user),
-        user_id: current_user.id
-      },
-      loi_form: {
-        name: loi_form.name,
-        email: loi_form.email,
-        answers: loi_form.answers
-      }
-    }
-    if loi_rating
-      api_package[:user][:average_rating] = loi_rating.average
-      api_package[:user][:invited] = loi_rating.q5_rating
-    end
-    render json: api_package
+    @loi_form = LoiForm.find_by(id: params[:id])
+    @loi_rating = @loi_form.loi_ratings.find_by(user_id: current_user.id)
   end
 
   def create_loi_rating
@@ -37,6 +22,8 @@ class Api::V1::LoiFormsController < ApplicationController
         average_rating: loi_rating.average,
         invited: loi_rating.q5_rating
       }
+    else
+      render json: loi_rating.errors.to_json, status: :unprocessable_entity
     end
   end
 end
