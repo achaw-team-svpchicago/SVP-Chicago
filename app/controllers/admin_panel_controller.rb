@@ -6,10 +6,13 @@ class AdminPanelController < ApplicationController
   end
 
   def invite_user
+    password = SecureRandom.hex
     user = User.new({
       email: params[:email],
-      super_admin: params[:super_admin]
+      super_admin: params[:super_admin],
+      password: password
     })
+    puts user
     if user.save
       render json: user, status: :success
     else
