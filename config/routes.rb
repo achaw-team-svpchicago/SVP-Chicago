@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'nonprofits#home'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    passwords: 'user/passwords'
+  }
 
   get '/admin_panel' => 'admin_panel#show'
   post '/admin_panel' => 'admin_panel#invite_user'
