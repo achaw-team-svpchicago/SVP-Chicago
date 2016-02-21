@@ -12,9 +12,9 @@ class AdminPanelController < ApplicationController
       super_admin: params[:super_admin],
       password: password
     })
-    puts user
+
     if user.save
-      render json: user, status: :success
+      render json: user, status: :ok
     else
       render json: user.errors, status: :unprocessable_entity
     end

@@ -8,8 +8,8 @@
     $scope.invitee = {super_admin: false};
 
     $scope.invitePartner = function(invitee) {
-      $http.post("/admin_panel", invitee).success(function(response) {
-        console.log(response);
+      $http.post("/admin_panel", invitee).success(function() {
+        $scope.invitee = {super_admin: false};
       }).error(function(response) {
         console.log(response);
       });

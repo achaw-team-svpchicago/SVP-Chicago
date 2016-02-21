@@ -11,7 +11,13 @@
 <div class="container" ng-app="app">
   <!-- # <%= render 'devise/menu/registration_items' %> -->
   <%= render 'devise/menu/login_items' %>
+  <% if user_signed_in? %>
+    <%= link_to "Change your password", edit_user_registration_path %>
+  <% end %>
+
   <%= yield %>
+
+
 
 </div>
 
