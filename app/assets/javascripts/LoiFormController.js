@@ -2,7 +2,7 @@
 
 (function() {
   "use strict";
-  angular.module('app').controller('LoiFormController', ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
+  angular.module("app").controller("LoiFormController", ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
 
     $scope.setup = function(loiFormId, userId) {
       var url = "/api/v1/loi_forms/" + loiFormId;
@@ -42,7 +42,7 @@
     window.$scope = $scope;
   }]);
 
-  angular.module('app').controller('LoiModalCtrl', ["$scope", "$http", "$uibModalInstance", "modalData", function($scope, $http, $uibModalInstance, modalData) {
+  angular.module("app").controller("LoiModalCtrl", ["$scope", "$http", "$uibModalInstance", "modalData", function($scope, $http, $uibModalInstance, modalData) {
 
     $scope.loiName = modalData.loiName;
     $scope.ratings = {
