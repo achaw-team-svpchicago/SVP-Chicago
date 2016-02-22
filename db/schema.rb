@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221224800) do
+ActiveRecord::Schema.define(version: 20160222015301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160221224800) do
   create_table "loi_forms", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "organization"
     t.string   "address"
     t.string   "phone"
@@ -39,6 +39,11 @@ ActiveRecord::Schema.define(version: 20160221224800) do
     t.string   "contact"
     t.string   "contact_phone"
     t.string   "contact_email"
+    t.integer  "employees"
+    t.integer  "volunteers"
+    t.integer  "board"
+    t.decimal  "budget",          precision: 12, scale: 2
+    t.text     "affiliated"
   end
 
   create_table "loi_ratings", force: :cascade do |t|
