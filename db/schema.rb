@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222025808) do
+ActiveRecord::Schema.define(version: 20160222032747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20160222025808) do
     t.string   "other_3_priority"
     t.text     "additional"
     t.text     "referral"
-    t.string   "sectors"
+    t.string   "sectors",                                                          array: true
     t.string   "other_sectors"
     t.string   "geo_focus"
     t.string   "other_geo_focus"
