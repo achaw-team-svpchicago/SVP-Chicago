@@ -83,12 +83,13 @@
         </div>
     </script>
 
-    <h2>{{ loiForm.name }}
+    <h2>{{ loiForm.organization }}
     <button type="button" class="btn btn-default" ng-click="openRatingModal()" ng-if="!ratedByUser">Rate</button></h2>
-    <p>{{ loiForm.email }}</p><br>
+    <p>Proposal Contact: {{ loiForm.contact }}</p><br>
+    <p>Contact E-mail: {{ loiForm.contact_email }}</p><br>
     <div ng-if="ratedByUser">
-        <h5><b>Your total rating of {{ loiForm.name }}:</b> {{ userAverageRating }}/5</h5>
-        <h5><b>You opted to invite {{ loiForm.name }} to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
+        <h5><b>Your total rating of {{ loiForm.organization }}:</b> {{ userAverageRating }}/5</h5>
+        <h5><b>You opted to invite {{ loiForm.organization }} to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
     </div>
     <br>
     <span ng-repeat="answer in loiForm.answers">
