@@ -83,17 +83,56 @@
         </div>
     </script>
 
-    <h2>{{ loiForm.organization }}
+    <h2>{{ contactInfo.organization }}
     <button type="button" class="btn btn-default" ng-click="openRatingModal()" ng-if="!ratedByUser">Rate</button></h2>
-    <p>Proposal Contact: {{ loiForm.contact }}</p><br>
-    <p>Contact E-mail: {{ loiForm.contact_email }}</p><br>
     <div ng-if="ratedByUser">
-        <h5><b>Your total rating of {{ loiForm.organization }}:</b> {{ userAverageRating }}/5</h5>
-        <h5><b>You opted to invite {{ loiForm.organization }} to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
+        <h5><b>Your total rating of <em>{{ contactInfo.organization }}</em>:</b> {{ userAverageRating }}/5</h5>
+        <h5><b>Your vote to invite <em>{{ contactInfo.organization }}</em> to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
     </div>
     <br>
     <span ng-repeat="answer in loiForm.answers">
         <b>{{ answer.question }}: </b>
         <i>{{ answer.answer }}</i><br>
     </span>
+    <p>Proposal Contact: {{ contactInfo.contact }}</p>
+    <p>Contact E-mail: {{ contactInfo.contact_email }}</p>
 </div>
+
+<form class="form-horizontal" role="form">
+    <!-- section 1 -->
+<%= render partial: "partials/contact_info" %>
+
+<!-- section 2 -->
+<%= render partial: "partials/organization" %>
+
+<!-- section 3 -->
+<%= render partial: "partials/overview_mission" %>
+
+<!-- section 4 -->
+<%= render partial: "partials/vision" %>
+
+<!-- section 5 -->
+<%= render partial: "partials/concerns" %>
+
+<!-- section 6 -->
+<%= render partial: "partials/challenges_header" %>
+<%= render partial: "partials/challenges_board" %>
+<%= render partial: "partials/challenges_operations" %>
+<%= render partial: "partials/challenges_fund" %>
+<%= render partial: "partials/challenges_marketing" %>
+<%= render partial: "partials/challenges_strategic" %>
+<%= render partial: "partials/challenges_technology" %>
+<%= render partial: "partials/challenges_other" %>
+
+<!-- additional comments section 7 -->
+<%= render partial: "partials/additional" %>
+
+<!-- section 8 -->
+<%= render partial: "partials/referral" %>
+
+<!-- section 9 -->
+<%= render partial: "partials/demographics" %>
+
+<!-- section 10 -->
+<%= render partial: "partials/geographical" %>
+</form>
