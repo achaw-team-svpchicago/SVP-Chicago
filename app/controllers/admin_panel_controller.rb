@@ -14,6 +14,7 @@ class AdminPanelController < ApplicationController
     })
 
     if user.save
+      UserMailer.email_invitation(user, password)
       render json: user, status: :ok
     else
       render json: user.errors, status: :unprocessable_entity

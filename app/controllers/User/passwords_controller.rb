@@ -17,6 +17,7 @@ class User::PasswordsController < Devise::PasswordsController
   # PUT /user/password
   def update
     super
+    
   end
 
   protected
