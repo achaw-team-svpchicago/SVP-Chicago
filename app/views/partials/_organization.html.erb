@@ -3,7 +3,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="employees">Employees:</label>
       <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="employees" placeholder="Enter total number" min="0">
+        <input type="number" class="form-control" name="employees" placeholder="Enter total number" min="0" value="<%= @loi_form.employees %>" <% if @loi_form.created_at %>readonly <% end %>>
       </div>
     </div>
 
