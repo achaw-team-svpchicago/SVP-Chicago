@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'nonprofits#home'
 
   devise_for :users, controllers: {
-    passwords: 'user/passwords'
+    registrations: 'user/registrations'
   }
 
   get '/admin_panel' => 'admin_panel#show'
