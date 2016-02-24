@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/loi_forms/:id' => 'loi_forms#show'
       post '/loi_forms/:id' => 'loi_forms#create_loi_rating'
+
+      get '/admin_panel' => 'admin_panel#show'
     end
   end
 
