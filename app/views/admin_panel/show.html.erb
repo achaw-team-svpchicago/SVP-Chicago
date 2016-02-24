@@ -1,7 +1,7 @@
-<div ng-controller="adminPanelController">
+<div ng-controller="adminPanelController" ng-init="setup()">
     <h2>Admin Panel</h2>
     <div class="panel panel-default">
-        <div class="panel-heading">Invite Partner to SVP</div>
+        <div class="panel-heading"><b>Invite Partner to SVP</b></div>
         <div class="panel-body">
             <form>
                 <div class="form-group">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">User Managment</div>
+        <div class="panel-heading"><b>User Managment</b></div>
         <div class="panel-body">
             <uib-tabset>
                 <uib-tab heading="Partner Accounts">
@@ -25,16 +25,17 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Edit Info</th>
-                            <th>Delete Account</th>
-                            <th>Give Admin Access</th>
+                            <th>Delete</th>
+                            <th>Admin Rights</th>
                         </tr></thead>
                         <tbody>
-                            <tr>
+                            <tr ng-repeat="partner in partners">
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ partner.email }}</td>
+                                <td><button class="btn btn-info">Edit</button></td>
+                                <td><button class="btn btn-danger">Delete</button></td>
+                                <td><button class="btn btn-warning">Grant</button></td>
+                                <td ng-if="!partner.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -45,16 +46,17 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Edit Info</th>
-                            <th>Delete Account</th>
-                            <th>Rescind Admin Access</th>
+                            <th>Delete</th>
+                            <th>Admin Rights</th>
                         </tr></thead>
                         <tbody>
-                            <tr>
+                            <tr ng-repeat="admin in admins">
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ admin.email }}</td>
+                                <td><button class="btn btn-info">Edit</button></td>
+                                <td><button class="btn btn-danger">Delete</button></td>
+                                <td><button class="btn btn-warning">Rescind</button></td>
+                                <td ng-if="!admin.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
                             </tr>
                         </tbody>
                     </table>
