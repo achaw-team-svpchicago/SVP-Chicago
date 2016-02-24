@@ -4,7 +4,8 @@ before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
-    super
+    redirect_to '/'
+    # super
   end
 
   # POST /resource
@@ -14,6 +15,9 @@ before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/edit
   def edit
+    if params[:event] == "welcome"
+      flash[:warning] = "Welcome to SVP Chicago! Please update you password here in order to begin reviewing non-profits. Thank you!."
+    end
     super
   end
 
