@@ -7,12 +7,10 @@ class NonprofitsController < ApplicationController
   end
 
   def create
+    #create hash from params with form values to avoid manually putting together a huge hash
     loi_form_params = params.to_hash.delete_if do |key, value| 
       key == "authenticity_token" || key == "controller" || key == "action"
     end
-    puts "==========================================="
-    puts loi_form_params
-    puts "==========================================="
 
     @loi_form = LoiForm.new(loi_form_params)
     # @loi_form = LoiForm.new(
