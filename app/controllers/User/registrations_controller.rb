@@ -20,7 +20,10 @@ before_filter :configure_account_update_params, only: [:update]
   # PUT /resource
   def update
     super
-    current_user.update(confirmed: true)
+    unless current_user.confirmed
+      current_user.update(confirmed: true)
+      flash[:success] = "Your account has been confirmed! You can now browse nonprofit submissions."
+    end
   end
 
   # DELETE /resource
