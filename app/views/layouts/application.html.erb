@@ -12,6 +12,10 @@
   <!-- # <%= render 'devise/menu/registration_items' %> -->
   <%= render 'devise/menu/login_items' %>
 
+  <% if user_signed_in? %>
+    <%= link_to "Change your password", edit_user_registration_path %>
+  <% end %>
+
   <% flash.each do |name, message| %>
     <div class="alert alert-<%= name %> alert-dismissible fade in" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</span><span class="sr-only">Close</span></button>

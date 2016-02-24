@@ -9,9 +9,26 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def authenticate_user!
+  def authenticate_admin!
+    authenticate_confirmed!
     unless user_signed_in?
       redirect_to '/'
+    end
+  end
+
+  def authenticate_super_admin!
+    authenticate_confirmed!
+    unless current_user.super_admin
+      redirect_to '/'
+    end
+  end
+
+  private
+
+  def authenticate_confirmed!
+    unless current_user.confirmed
+      redirect_to '/users/edit'
+      flash[:danger] = "Please update you password to confirm your account before viewing this page!"
     end
   end
 end
