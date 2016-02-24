@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   root 'nonprofits#home'
   get '/letter_of_interest' => 'nonprofits#loi_form'
+  post '/letter_of_interest' => 'nonprofits#create'
 
   get '/loi_forms' => 'loi_forms#index'
   get '/loi_forms/:id' => 'loi_forms#show'
+
 
   namespace :api do
     namespace :v1 do
