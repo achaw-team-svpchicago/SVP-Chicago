@@ -9,6 +9,8 @@
         $scope.partners = response.partners;
         $scope.admins = response.admins;
         $scope.invitee = {super_admin: false};
+        $scope.showPartnerEditForm = [];
+        $scope.showAdminEditForm = [];
       });
     };
 
@@ -34,6 +36,33 @@
       }).error(function(response) {
         console.log(response);
       });
+    };
+
+    $scope.toggleEditForm = function(user, index, table) {
+      if ($scope.showAdminEditForm[index] || $scope.showPartnerEditForm[index]) {
+        $scope.showAdminEditForm[index] = false;
+        $scope.showPartnerEditForm[index] = false;
+      } else {
+        $scope.closeEditForms();
+        switch (table) {
+        case "admin":
+          $scope.updatedFirstName = user.firstName;
+          $scope.updatedLastName = user.lastName;
+          $scope.updatedEmail = user.email;
+          $scope.showAdminEditForm[index] = !$scope.showAdminEditForm[index];
+          break;
+        case "partner":
+          $scope.updatedName = user.firstName + " " + user.lastName;
+          $scope.updatedEmail = user.email;
+          $scope.showPartnerEditForm[index] = !$scope.showPartnerEditForm[index];
+          break;
+        }
+      }
+    };
+
+    $scope.closeEditForms = function() {
+      $scope.showPartnerEditForm = [];
+      $scope.showAdminEditForm = [];
     };
 
     window.$scope = $scope;
