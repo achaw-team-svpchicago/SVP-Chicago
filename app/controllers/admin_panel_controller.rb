@@ -8,6 +8,8 @@ class AdminPanelController < ApplicationController
   def invite_user
     password = SecureRandom.hex
     user = User.new({
+      first_name: params[:firstName],
+      last_name: params[:lastName],
       email: params[:email],
       super_admin: params[:super_admin],
       password: password

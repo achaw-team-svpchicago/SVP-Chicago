@@ -5,6 +5,12 @@
         <div class="panel-body">
             <form>
                 <div class="form-group">
+                    <label for="inputFirstName">First Name</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="Enter Invitee's First Name" ng-model="invitee.firstName">
+                    <br>
+                    <label for="inputLastName">Last Name</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Enter Invitee's Last Name" ng-model="invitee.lastName">
+                    <br>
                     <label for="inputEmail">Email Address</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="Enter Invitee's Email Address" ng-model="invitee.email">
                     <div class="checkbox">
@@ -30,11 +36,12 @@
                         </tr></thead>
                         <tbody>
                             <tr ng-repeat="partner in partners">
-                                <td></td>
+                                <td>{{ partner.firstName }} {{ partner.lastName }}</td>
                                 <td>{{ partner.email }}</td>
                                 <td><button class="btn btn-info">Edit</button></td>
                                 <td><button class="btn btn-danger">Delete</button></td>
                                 <td><button class="btn btn-warning">Grant</button></td>
+                                <td ng-if="partner.confirmed">Account Confirmed</td>
                                 <td ng-if="!partner.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
                             </tr>
                         </tbody>
@@ -51,11 +58,12 @@
                         </tr></thead>
                         <tbody>
                             <tr ng-repeat="admin in admins">
-                                <td></td>
+                                <td>{{ admin.firstName }} {{ admin.lastName }}</td>
                                 <td>{{ admin.email }}</td>
                                 <td><button class="btn btn-info">Edit</button></td>
                                 <td><button class="btn btn-danger">Delete</button></td>
                                 <td><button class="btn btn-warning">Rescind</button></td>
+                                <td ng-if="admin.confirmed">Account Confirmed</td>
                                 <td ng-if="!admin.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
                             </tr>
                         </tbody>
