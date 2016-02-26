@@ -3,35 +3,35 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="employees">Employees:</label>
       <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="employees" placeholder="Enter total number" min="0" value="<%= @loi_form.employees %>" <% if @loi_form.created_at %>readonly <% end %>>
+        <input type="number" class="form-control" name="employees" placeholder="Enter total number" min="0" value="<%= @loi_form.employees %>" value="<%= @loi_form.employees %>">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="volunteers">Volunteers:</label>
       <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="volunteers" placeholder="Enter total number" min="0">
+        <input type="number" class="form-control" name="volunteers" placeholder="Enter total number" min="0" value="<%= @loi_form.volunteers %>">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="board">Active Board Members:</label>
       <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="board" placeholder="Enter total number" min="0">
+        <input type="number" class="form-control" name="board" placeholder="Enter total number" min="0" value="<%= @loi_form.board %>">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="budget">Total annual budget for organization:</label>
       <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="budget" placeholder="Enter annual budget" min="0" step="0.01">
+        <input type="number" class="form-control" name="budget" placeholder="Enter annual budget" min="0" value="<%= @loi_form.budget %>">
       </div>
     </div>
 
     <div class="form-group">
       <label class="control-label col-sm-2" for="affiliated">If affiliated with a national or parent organization, what role does the organization play in your strategic direction, operations, and overall governance?</label>
       <div class="col-sm-10"> 
-        <textarea type="text" class="form-control" rows="7" name="affiliated" maxlength="150" placeholder="Role of Affiliations: limit to 150 characters."></textarea>
+        <textarea type="text" class="form-control" rows="7" name="affiliated" maxlength="150" placeholder="Role of Affiliations: limit to 150 characters."><%= @loi_form.affiliated %></textarea>
       </div>
     </div>
 <hr>
