@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226224209) do
+ActiveRecord::Schema.define(version: 20160227002038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(version: 20160226224209) do
     t.string   "other_sectors"
     t.string   "geo_focus"
     t.string   "other_geo_focus"
+    t.integer  "actual_staff_total"
+    t.integer  "current_staff_total"
+    t.integer  "projected_staff_total"
   end
 
   create_table "loi_ratings", force: :cascade do |t|
