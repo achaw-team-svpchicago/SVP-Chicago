@@ -44,17 +44,13 @@
         $scope.showPartnerEditForm[index] = false;
       } else {
         $scope.closeEditForms();
+        $scope.updatedUser = Object.create(user);
         switch (table) {
         case "admin":
-          $scope.updatedFirstName = user.firstName;
-          $scope.updatedLastName = user.lastName;
-          $scope.updatedEmail = user.email;
-          $scope.showAdminEditForm[index] = !$scope.showAdminEditForm[index];
+          $scope.showAdminEditForm[index] = true;
           break;
         case "partner":
-          $scope.updatedName = user.firstName + " " + user.lastName;
-          $scope.updatedEmail = user.email;
-          $scope.showPartnerEditForm[index] = !$scope.showPartnerEditForm[index];
+          $scope.showPartnerEditForm[index] = true;
           break;
         }
       }
@@ -63,6 +59,36 @@
     $scope.closeEditForms = function() {
       $scope.showPartnerEditForm = [];
       $scope.showAdminEditForm = [];
+      $scope.updatedUser = {};
+    };
+
+    $scope.updateUser = function(user, updatedUser, index, table) {
+      var userAttributes = {
+        id: user.id,
+        first_name: updatedUser.firstName,
+        last_name: updatedUser.lastName,
+        email: updatedUser.email
+      };
+      $http.patch("/admin_panel", userAttributes).then(function(response) {
+        console.log(response);
+        switch (table) {
+        case "admin":
+          $scope.admins[index] = {
+            email: response.data.email,
+            firstName: response.data.first_name,
+            lastName: response.data.last_name
+          };
+          break;
+        case "partner":
+          $scope.partners[index] = {
+            email: response.data.email,
+            firstName: response.data.first_name,
+            lastName: response.data.last_name
+          };
+          break;
+        }
+        $scope.closeEditForms();
+      });
     };
 
     window.$scope = $scope;
