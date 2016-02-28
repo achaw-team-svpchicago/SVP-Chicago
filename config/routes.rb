@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/admin_panel' => 'admin_panel#show'
   post '/admin_panel' => 'admin_panel#invite_user'
   patch '/admin_panel' => 'admin_panel#update_user'
+  patch '/admin_panel/:id' => 'admin_panel#toggle_admin_rights'
   delete '/admin_panel/:id' => 'admin_panel#delete_user'
 
   get '/letter_of_interest' => 'nonprofits#loi_form'

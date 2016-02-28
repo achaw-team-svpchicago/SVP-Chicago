@@ -46,4 +46,13 @@ class AdminPanelController < ApplicationController
       render json: nil, status: :not_found
     end
   end
+
+  def toggle_admin_rights
+    user = User.find_by(id: params[:id])
+    if user.update({super_admin: !user.super_admin})
+      render json: user, status: :ok
+    else
+      render json: user.errors
+    end
+  end
 end

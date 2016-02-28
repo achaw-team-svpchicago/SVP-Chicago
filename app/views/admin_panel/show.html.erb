@@ -52,7 +52,7 @@
                                 <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-danger" ng-click="deleteUser(partner)">Delete</button></td>
                                 <td ng-if="showPartnerEditForm[$index]"><button class="btn btn-danger" ng-click="closeEditForms()">Cancel</button></td>
                                 
-                                <td><button class="btn btn-warning">Grant</button></td>
+                                <td><button class="btn btn-warning" ng-click="toggleAdminRights(partner ,$index)">Grant</button></td>
                                 
                                 <td ng-if="partner.confirmed">Account Confirmed</td>
                                 <td ng-if="!partner.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
@@ -87,7 +87,7 @@
                                 <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-danger" ng-click="deleteUser(admin)">Delete</button></td>
                                 <td ng-if="showAdminEditForm[$index]"><button class="btn btn-danger" ng-click="closeEditForms()">Cancel</button></td>
                                 
-                                <td><button class="btn btn-warning">Rescind</button></td>
+                                <td><button class="btn btn-warning" ng-click="toggleAdminRights(admin, $index)">Rescind</button></td>
 
                                 <td ng-if="admin.confirmed">Account Confirmed</td>
                                 <td ng-if="!admin.confirmed"><button class="btn btn-primary">Resend Activation</button></td>

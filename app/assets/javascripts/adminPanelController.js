@@ -113,6 +113,26 @@
         switch (user.superAdmin) {
         case true:
           $scope.admins.splice(index, 1);
+          break;
+        case false:
+          $scope.partners.splice(index, 1);
+          break;
+        }
+      });
+    };
+
+    $scope.toggleAdminRights = function(user, index) {
+      var url = "/admin_panel/" + user.id;
+      $http.patch(url).then(function() {
+        switch (user.superAdmin) {
+        case true:
+          $scope.admins.splice(index, 1);
+          $scope.partners.push(user);
+          break;
+        case false:
+          $scope.partners.splice(index, 1);
+          $scope.admins.push(user);
+          break;
         }
       });
     };
