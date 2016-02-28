@@ -46,10 +46,10 @@
                                 <td ng-if="!showPartnerEditForm[$index]">{{ partner.email }}</td>
                                 <td ng-if="showPartnerEditForm[$index]"><input type="email" ng-model="updatedUser.email"></td>
                                 
-                                <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-info" ng-click="toggleEditForm(partner, $index, 'partner')">Edit</button></td>
-                                <td ng-if="showPartnerEditForm[$index]"><button class="btn btn-info" ng-click="updateUser(partner, updatedUser, $index, 'partner')">Update</button></td>
+                                <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-info" ng-click="toggleEditForm(partner, $index)">Edit</button></td>
+                                <td ng-if="showPartnerEditForm[$index]"><button class="btn btn-info" ng-click="updateUser(partner, updatedUser, $index)">Update</button></td>
                                 
-                                <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-danger">Delete</button></td>
+                                <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-danger" ng-click="deleteUser(partner)">Delete</button></td>
                                 <td ng-if="showPartnerEditForm[$index]"><button class="btn btn-danger" ng-click="closeEditForms()">Cancel</button></td>
                                 
                                 <td><button class="btn btn-warning">Grant</button></td>
@@ -81,10 +81,10 @@
                                 <td ng-if="!showAdminEditForm[$index]">{{ admin.email }}</td>
                                 <td ng-if="showAdminEditForm[$index]"><input type="email" ng-model="updatedUser.email"></td>
 
-                                <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-info" ng-click="toggleEditForm(admin, $index, 'admin')">Edit</button></td>
-                                <td ng-if="showAdminEditForm[$index]"><button class="btn btn-info" ng-click="updateUser(admin, updatedUser, $index, 'admin')">Update</button></td>
+                                <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-info" ng-click="toggleEditForm(admin, $index)">Edit</button></td>
+                                <td ng-if="showAdminEditForm[$index]"><button class="btn btn-info" ng-click="updateUser(admin, updatedUser, $index)">Update</button></td>
 
-                                <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-danger">Delete</button></td>
+                                <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-danger" ng-click="deleteUser(admin)">Delete</button></td>
                                 <td ng-if="showAdminEditForm[$index]"><button class="btn btn-danger" ng-click="closeEditForms()">Cancel</button></td>
                                 
                                 <td><button class="btn btn-warning">Rescind</button></td>

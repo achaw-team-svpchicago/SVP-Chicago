@@ -6,12 +6,29 @@
 
     $scope.setup = function() {
       $http.get("/api/v1/admin_panel").success(function(response) {
-        $scope.partners = response.partners;
-        $scope.admins = response.admins;
+        $scope.response = response;
+        $scope.users = response.users;
+        $scope.sortUsers($scope.users);
         $scope.invitee = {super_admin: false};
         $scope.showPartnerEditForm = [];
         $scope.showAdminEditForm = [];
       });
+    };
+
+    $scope.sortUsers = function(users) {
+      $scope.partners = [];
+      $scope.admins = [];
+      for (var i = users.length - 1; i >= 0; i--) {
+        console.log(users[i]);
+        switch (users[i].superAdmin) {
+        case true:
+          $scope.admins.push(users[i]);
+          break;
+        case false:
+          $scope.partners.push(users[i]);
+          break;
+        }
+      }
     };
 
     $scope.invitePartner = function(invitee) {
@@ -38,18 +55,18 @@
       });
     };
 
-    $scope.toggleEditForm = function(user, index, table) {
+    $scope.toggleEditForm = function(user, index) {
       if ($scope.showAdminEditForm[index] || $scope.showPartnerEditForm[index]) {
         $scope.showAdminEditForm[index] = false;
         $scope.showPartnerEditForm[index] = false;
       } else {
         $scope.closeEditForms();
         $scope.updatedUser = Object.create(user);
-        switch (table) {
-        case "admin":
+        switch (user.superAdmin) {
+        case true:
           $scope.showAdminEditForm[index] = true;
           break;
-        case "partner":
+        case false:
           $scope.showPartnerEditForm[index] = true;
           break;
         }
@@ -62,7 +79,7 @@
       $scope.updatedUser = {};
     };
 
-    $scope.updateUser = function(user, updatedUser, index, table) {
+    $scope.updateUser = function(user, updatedUser, index) {
       var userAttributes = {
         id: user.id,
         first_name: updatedUser.firstName,
@@ -71,15 +88,15 @@
       };
       $http.patch("/admin_panel", userAttributes).then(function(response) {
         console.log(response);
-        switch (table) {
-        case "admin":
+        switch (user.superAdmin) {
+        case true:
           $scope.admins[index] = {
             email: response.data.email,
             firstName: response.data.first_name,
             lastName: response.data.last_name
           };
           break;
-        case "partner":
+        case false:
           $scope.partners[index] = {
             email: response.data.email,
             firstName: response.data.first_name,
@@ -89,6 +106,10 @@
         }
         $scope.closeEditForms();
       });
+    };
+
+    $scope.deleteUser = function(user) {
+
     };
 
     window.$scope = $scope;
