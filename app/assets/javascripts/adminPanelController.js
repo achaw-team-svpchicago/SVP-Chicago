@@ -19,7 +19,6 @@
       $scope.partners = [];
       $scope.admins = [];
       for (var i = users.length - 1; i >= 0; i--) {
-        console.log(users[i]);
         switch (users[i].superAdmin) {
         case true:
           $scope.admins.push(users[i]);
@@ -108,8 +107,14 @@
       });
     };
 
-    $scope.deleteUser = function(user) {
-
+    $scope.deleteUser = function(user, index) {
+      var url = "/admin_panel/" + user.id;
+      $http.delete(url).then(function() {
+        switch (user.superAdmin) {
+        case true:
+          $scope.admins.splice(index, 1);
+        }
+      });
     };
 
     window.$scope = $scope;

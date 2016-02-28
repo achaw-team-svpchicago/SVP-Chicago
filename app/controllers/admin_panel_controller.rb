@@ -36,4 +36,14 @@ class AdminPanelController < ApplicationController
       render json: user.errors, status: :unprocessable_entity
     end
   end
+
+  def delete_user
+    user = User.find_by(id: params[:id])
+    begin
+      user.destroy
+      render json: user, status: :ok
+    rescue NoMethodError
+      render json: nil, status: :not_found
+    end
+  end
 end
