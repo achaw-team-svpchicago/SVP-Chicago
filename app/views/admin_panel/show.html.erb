@@ -1,10 +1,16 @@
-<div ng-controller="adminPanelController">
+<div ng-controller="adminPanelController" ng-init="setup()">
     <h2>Admin Panel</h2>
     <div class="panel panel-default">
-        <div class="panel-heading">Invite Partner to SVP</div>
+        <div class="panel-heading"><b>Invite Partner to SVP</b></div>
         <div class="panel-body">
             <form>
                 <div class="form-group">
+                    <label for="inputFirstName">First Name</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="Enter Invitee's First Name" ng-model="invitee.firstName">
+                    <br>
+                    <label for="inputLastName">Last Name</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Enter Invitee's Last Name" ng-model="invitee.lastName">
+                    <br>
                     <label for="inputEmail">Email Address</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="Enter Invitee's Email Address" ng-model="invitee.email">
                     <div class="checkbox">
@@ -13,6 +19,83 @@
                     <button type="submit" class="btn btn-default" ng-click="invitePartner(invitee)">Submit</button>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>User Managment</b></div>
+        <div class="panel-body">
+            <uib-tabset>
+                <uib-tab heading="Partner Accounts" ng-click="closeEditForms()">
+                    <table class="table table-striped">
+                        <thead><tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>Edit Info</th>
+                            <th>Delete</th>
+                            <th>Admin Rights</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr ng-repeat="partner in partners">
+                                <td ng-if="!showPartnerEditForm[$index]">{{ partner.firstName }}</td>
+                                <td ng-if="showPartnerEditForm[$index]"><input type="text" ng-model="updatedUser.firstName"></td>
+                                
+                                <td ng-if="!showPartnerEditForm[$index]">{{ partner.lastName }}</td>
+                                <td ng-if="showPartnerEditForm[$index]"><input type="text" ng-model="updatedUser.lastName"></td>
+
+                                <td ng-if="!showPartnerEditForm[$index]">{{ partner.email }}</td>
+                                <td ng-if="showPartnerEditForm[$index]"><input type="email" ng-model="updatedUser.email"></td>
+                                
+                                <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-info" ng-click="toggleEditForm(partner, $index)">Edit</button></td>
+                                <td ng-if="showPartnerEditForm[$index]"><button class="btn btn-info" ng-click="updateUser(partner, updatedUser, $index)">Update</button></td>
+                                
+                                <td ng-if="!showPartnerEditForm[$index]"><button class="btn btn-danger" ng-click="deleteUser(partner)">Delete</button></td>
+                                <td ng-if="showPartnerEditForm[$index]"><button class="btn btn-danger" ng-click="closeEditForms()">Cancel</button></td>
+                                
+                                <td><button class="btn btn-warning" ng-click="toggleAdminRights(partner ,$index)">Grant</button></td>
+                                
+                                <td ng-if="partner.confirmed">Account Confirmed</td>
+                                <td ng-if="!partner.confirmed"><button class="btn btn-primary" ng-click="resendActivation(partner)">Resend Activation</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </uib-tab>
+                <uib-tab heading="Admin Accounts" ng-click="closeEditForms()">
+                    <table class="table table-striped">
+                        <thead><tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>Edit Info</th>
+                            <th>Delete</th>
+                            <th>Admin Rights</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr ng-repeat="admin in admins">
+                                <td ng-if="!showAdminEditForm[$index]">{{ admin.firstName }}</td>
+                                <td ng-if="showAdminEditForm[$index]"><input type="text" ng-model="updatedUser.firstName"></td>
+
+                                <td ng-if="!showAdminEditForm[$index]">{{ admin.lastName }}</td>
+                                <td ng-if="showAdminEditForm[$index]"><input type="text" ng-model="updatedUser.lastName"></td>
+
+                                <td ng-if="!showAdminEditForm[$index]">{{ admin.email }}</td>
+                                <td ng-if="showAdminEditForm[$index]"><input type="email" ng-model="updatedUser.email"></td>
+
+                                <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-info" ng-click="toggleEditForm(admin, $index)">Edit</button></td>
+                                <td ng-if="showAdminEditForm[$index]"><button class="btn btn-info" ng-click="updateUser(admin, updatedUser, $index)">Update</button></td>
+
+                                <td ng-if="!showAdminEditForm[$index]"><button class="btn btn-danger" ng-click="deleteUser(admin)">Delete</button></td>
+                                <td ng-if="showAdminEditForm[$index]"><button class="btn btn-danger" ng-click="closeEditForms()">Cancel</button></td>
+                                
+                                <td><button class="btn btn-warning" ng-click="toggleAdminRights(admin, $index)">Rescind</button></td>
+
+                                <td ng-if="admin.confirmed">Account Confirmed</td>
+                                <td ng-if="!admin.confirmed"><button class="btn btn-primary" ng-click="resendActivation(admin)">Resend Activation</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </uib-tab>
+            </uib-tabset>
         </div>
     </div>
 </div>

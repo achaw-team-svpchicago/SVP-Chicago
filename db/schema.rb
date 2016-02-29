@@ -149,6 +149,8 @@ ActiveRecord::Schema.define(version: 20160227002038) do
     t.boolean  "admin",                  default: true
     t.boolean  "super_admin",            default: false
     t.boolean  "confirmed",              default: false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
