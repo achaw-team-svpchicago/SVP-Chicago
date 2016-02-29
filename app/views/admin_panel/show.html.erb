@@ -55,7 +55,7 @@
                                 <td><button class="btn btn-warning" ng-click="toggleAdminRights(partner ,$index)">Grant</button></td>
                                 
                                 <td ng-if="partner.confirmed">Account Confirmed</td>
-                                <td ng-if="!partner.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
+                                <td ng-if="!partner.confirmed"><button class="btn btn-primary" ng-click="resendActivation(partner)">Resend Activation</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,7 +90,7 @@
                                 <td><button class="btn btn-warning" ng-click="toggleAdminRights(admin, $index)">Rescind</button></td>
 
                                 <td ng-if="admin.confirmed">Account Confirmed</td>
-                                <td ng-if="!admin.confirmed"><button class="btn btn-primary">Resend Activation</button></td>
+                                <td ng-if="!admin.confirmed"><button class="btn btn-primary" ng-click="resendActivation(admin)">Resend Activation</button></td>
                             </tr>
                         </tbody>
                     </table>

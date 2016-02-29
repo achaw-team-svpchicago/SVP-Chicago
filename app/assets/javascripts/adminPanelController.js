@@ -6,7 +6,6 @@
 
     $scope.setup = function() {
       $http.get("/api/v1/admin_panel").success(function(response) {
-        $scope.response = response;
         $scope.users = response.users;
         $scope.sortUsers($scope.users);
         $scope.invitee = {super_admin: false};
@@ -134,6 +133,13 @@
           $scope.admins.push(user);
           break;
         }
+      });
+    };
+
+    $scope.resendActivation = function(user) {
+      var url = "/admin_panel/" + user.id;
+      $http.post(url).then(function(response) {
+        console.log(response);
       });
     };
 

@@ -55,4 +55,11 @@ class AdminPanelController < ApplicationController
       render json: user.errors
     end
   end
+
+  def resend_activation
+    password = SecureRandom.hex
+    user = User.find_by(id: params[:id])
+    UserMailer.email_invitation(user, password)
+    render json: nil, status: :ok
+  end
 end
