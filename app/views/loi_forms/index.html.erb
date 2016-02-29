@@ -1,5 +1,13 @@
 <h2>Submitted Letters of Interest</h2>
-
+<table>
+  <tr>
+    <th>Organization</th>
+    <th>Date submitted</th>
+  </tr>
 <% @loi_forms.each do |loi_form| %>
-    <h4><%= link_to loi_form.name, "/loi_forms/#{loi_form.id}" %></h4>
+  <tr>
+    <td><h4><%= link_to loi_form.organization, "/loi_forms/#{loi_form.id}" %></h4></td>
+    <td><h4><%= loi_form.created_at.strftime("%B %d, %Y") %></h4></td>
+  </tr>
 <% end %>
+</table>

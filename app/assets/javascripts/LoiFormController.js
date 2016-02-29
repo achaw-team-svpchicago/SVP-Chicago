@@ -8,6 +8,7 @@
       var url = "/api/v1/loi_forms/" + loiFormId;
       $http.get(url).then(function(response) {
         $scope.loiForm = response.data.loi_form;
+        $scope.contactInfo = response.data.contact_info;
         $scope.ratedByUser = response.data.user.rated;
         $scope.userAverageRating = response.data.user.average_rating;
         $scope.userInvitedNonProfit = response.data.user.invited;
