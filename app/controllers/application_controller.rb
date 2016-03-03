@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_confirmed!
+    return unless user_signed_in?
     unless current_user.confirmed
       redirect_to '/users/edit'
       flash[:danger] = "Please update you password to confirm your account before viewing this page!"

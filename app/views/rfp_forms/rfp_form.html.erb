@@ -1,6 +1,6 @@
 <h1><center>Request for Investment Proposal</center></h1>
 
-<p>Social Venture Partners Chicago has sent this request for investment proposal (RFP) to a select group of 12 nonprofit organizations in the Chicagoland area. Through this web application, we hope to gather information we need to choose how to invest our money, time, and expertise to successfully address breaking the poverty cycle.</p> 
+<p>Social Venture Partners Chicago has sent this request for investment proposal (RFP) to a select group of 12 nonprofit organizations in the Chicagoland area. Through this web application, we hope to gather information we need to choose how to invest our money, time, and expertise to successfully address breaking the poverty cycle.</p>
 
 <p>We will make a three year commitment to provide the selected organization with:</p>
 <ul>
@@ -16,7 +16,7 @@ Please enter information directly into this form. The boxes will expand to hold 
 <ul>
   <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet Established” or “To Be Determined” is completely acceptable.</li>
   <li>Brevity will be highly advantageous to you during our review process.</li>
-</ul> 
+</ul>
 
 <p>For questions about items in the RFP, contact Colleen Scrivner, SVP Chicago director of marketing and operations, at colleen@svpchicago.org</p>
 
@@ -25,122 +25,22 @@ Please enter information directly into this form. The boxes will expand to hold 
 
 <h2> Sector Focus: Breaking the Poverty Cycle</h2>
 
-<form class="form-horizontal" role="form" method="post" action="/rfp_form">
+<%= form_for @rfp_form, url: {action: "create"}, html: {class: 'form-horizontal'} do |f| %>
+  <h3 class="form-title well">1. Contact Information</h3>
+  
+  <div class="form-group">
+    <%= f.label :organization, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :organization, class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :address, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+  </div>
 
-<h3 class="form-title well">1. Contact Information</h3>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="organization">Organization:</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="organization" placeholder="Enter organization name" value="<%= @rfp_form.organization %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="address">Address:</label>
-      <div class="col-sm-10">          
-        <input type="text" class="form-control" name="address" placeholder="Enter street address" value="<%= @rfp_form.address %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="phone">Phone:</label>
-      <div class="col-sm-10">          
-        <input type="tel" class="form-control" name="phone" placeholder="Enter phone number" value="<%= @rfp_form.phone %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="website">Website:</label>
-      <div class="col-sm-10"> 
-        <input type="url" class="form-control" name="website" placeholder="https://" value="<%= @rfp_form.website %>">
-      </div>
-    </div>
-    <hr>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="executive">Executive Director:</label>
-      <div class="col-sm-10"> 
-        <input type="text" class="form-control" name="executive" placeholder="Enter name" value="<%= @rfp_form.executive %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="executive_phone">Phone:</label>
-      <div class="col-sm-10"> 
-        <input type="tel" class="form-control" name="executive_phone" placeholder="Enter phone" value="<%= @rfp_form.executive_phone %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="executive_email">Email:</label>
-      <div class="col-sm-10"> 
-        <input type="email" class="form-control" name="executive_email" placeholder="Enter email address" value="<%= @rfp_form.executive_email %>">
-      </div>
-    </div>
-    <hr>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="contact">Proposal Contact:</label>
-      <div class="col-sm-10"> 
-        <input type="text" class="form-control" name="contact" placeholder="Enter name and title" value="<%= @rfp_form.contact %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="contact_phone">Phone:</label>
-      <div class="col-sm-10"> 
-        <input type="tel" class="form-control" name="contact_phone" placeholder="Enter phone" value="<%= @rfp_form.contact_phone %>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="contact_email">Email:</label>
-      <div class="col-sm-10"> 
-        <input type="email" class="form-control" name="contact_email" placeholder="Enter email" value="<%= @rfp_form.contact_email %>">
-      </div>
-    </div>
-<hr>    
-<h3 class="form-title well">2. Organization</h3>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="employees">Employees:</label>
-      <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="employees" placeholder="Enter total number" min="0" value="<%= @rfp_form.employees %>" value="<%= @rfp_form.employees %>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="volunteers">Volunteers:</label>
-      <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="volunteers" placeholder="Enter total number" min="0" value="<%= @frp_form.volunteers %>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="board">Active Board Members:</label>
-      <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="board" placeholder="Enter total number" min="0" value="<%= @rfp_form.board %>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="budget">Total annual budget for organization:</label>
-      <div class="col-sm-10"> 
-        <input type="number" class="form-control" name="budget" placeholder="Enter annual budget" min="0" value="<%= @rfp_form.budget %>">
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="affiliated">If affiliated with a national or parent organization, what role does the organization play in your strategic direction, operations, and overall governance?</label>
-      <div class="col-sm-10"> 
-        <textarea type="text" class="form-control" rows="7" name="affiliated" placeholder="Role of Affiliations: please limit to 50 words."><%= @rfp_form.affiliated %></textarea>
-      </div>
-    </div>
-<hr>
-
-<h3 class="form-title well">3. Brief History</h3>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2" for="mission">Provide a <em>brief</em> summary of your organization’s history.</label>
-      <div class="col-sm-10"> 
-        <textarea type="text" class="form-control" rows="7" name="history" placeholder="History: please limit to 50 words."><%= @history.mission %></textarea>
-      </div>
-    </div>
-<hr>
-
-<h3 class "form-title well">4. Current Programs and Services</h3>
-
-    <div class="form-group">
-
-
+  <%= f.submit "Create" %>
+<% end %>
