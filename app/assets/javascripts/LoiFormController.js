@@ -81,9 +81,30 @@
       var url = "/api/v1/loi_forms/review/" + $scope.modalData;
       $http.get(url).then(function(response) {
         $scope.ratings = response.data.ratings;
+        $scope.totalAverage = calculateAverage(response.data.ratings);
+        calculatePercentage(response.data.ratings);
       }, function(errors) {
         console.log(errors);
       });
+    };
+
+    var calculateAverage = function(ratings) {
+      var sum = 0;
+      for (var i = ratings.length - 1; i >= 0; i--) {
+        sum += ratings[i].average;
+      }
+      return sum / ratings.length;
+    };
+
+    var calculatePercentage = function(ratings) {
+      var totalYes = 0;
+      for (var i = ratings.length - 1; i >= 0; i--) {
+        if (ratings[i].q5 === "Yes") {
+          totalYes += 1;
+        }
+      }
+      $scope.percentInvited = (totalYes / 1.0) * 100;
+      $scope.percentNotInvited = 100 - $scope.percentInvited;
     };
 
     $scope.submitRating = function(submittedRatings) {
