@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="well col-md-9">
+    <h4>Business Operations (Accounting, HR, Purchasing, Legal)</h4>
+  </div>
+  <br>
+  <div class="col-md-1">
+    <input type="number" class="form-control" name="actual_staff_operations" placeholder="FTEs (actual)" min="0" value="<%= @loi_form.actual_staff_operations %>">
+  </div>
+  <div class="col-md-1">
+    <input type="number" class="form-control" name="current_staff_operations" placeholder="FTEs (current)" min="0" value="<%= @loi_form.current_staff_operations %>">
+  </div>
+  <div class="col-md-1">
+    <input type="number" class="form-control" name="projected_staff_operations" placeholder="FTEs (projected)" min="0" value="<%= @loi_form.projected_staff_operations %>">
+  </div>
+  <br>
+</div>
+
+<div class="row form-group">
+  <div class="col-md-2"></div>
+  <div class="col-md-5">
+    <input type="text" class="form-control" name="operations_challenge_1" placeholder="1. Enter a business operations challenge" value="<%= @loi_form.operations_challenge_1 %>">
+  </div>
+  <div class="col-md-2">
+    <select name="operations_1_priority" class="form-control">
+      <option value="">Select priority</option>
+      <option <% if @loi_form.operations_1_priority == "high" %>selected <% end %>value="high">High</option>
+      <option <% if @loi_form.operations_1_priority == "medium" %>selected <% end %>value="medium">Medium</option>
+      <option <% if @loi_form.operations_1_priority == "low" %>selected <% end %>value="low">Low</option>
+    </select>
+  </div>
+</div>
+
+<div class="row form-group">
+  <div class="col-md-2"></div>
+  <div class="col-md-5">
+    <input type="text" class="form-control" name="operations_challenge_2" placeholder="2. Enter a business operations challenge" value="<%= @loi_form.operations_challenge_2 %>">
+  </div>
+  <div class="col-md-2">
+    <select name="operations_2_priority" class="form-control">
+      <option value="">Select priority</option>
+      <option <% if @loi_form.operations_2_priority == "high" %>selected <% end %>value="high">High</option>
+      <option <% if @loi_form.operations_2_priority == "medium" %>selected <% end %>value="medium">Medium</option>
+      <option <% if @loi_form.operations_2_priority == "low" %>selected <% end %>value="low">Low</option>
+    </select>
+  </div>
+</div> 
+
+<div class="row form-group">
+  <div class="col-md-2"></div>
+  <div class="col-md-5">
+    <input type="text" class="form-control" name="operations_challenge_3" placeholder="3. Enter a business operations challenge" value="<%= @loi_form.operations_challenge_3 %>">
+  </div>
+  <div class="col-md-2">
+    <select name="operations_3_priority" class="form-control">
+      <option value="">Select priority</option>
+      <option <% if @loi_form.operations_3_priority == "high" %>selected <% end %>value="high">High</option>
+      <option <% if @loi_form.operations_3_priority == "medium" %>selected <% end %>value="medium">Medium</option>
+      <option <% if @loi_form.operations_3_priority == "low" %>selected <% end %>value="low">Low</option>
+    </select>
+  </div>
+</div>
+
+<hr>
