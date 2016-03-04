@@ -74,6 +74,9 @@
                     </td>
                 </tr>
             </table>
+            <div class="form-group">
+                <label for="comment">Comments:</label>
+                <textarea class="form-control" id="comment" cols="25" rows="5" ng-model="ratings['comment']" placeholder="Enter your comments here."></textarea>
             </div>
         </div>
         <div class="modal-footer">
@@ -90,52 +93,47 @@
         <h5><b>Your vote to invite <em>{{ contactInfo.organization }}</em> to fill out an RFP form:</b> {{ userInvitedNonProfit }} </h5>
     </div>
     <br>
-    <span ng-repeat="answer in loiForm.answers">
-        <b>{{ answer.question }}: </b>
-        <i>{{ answer.answer }}</i><br>
-    </span>
-    <p>Proposal Contact: {{ contactInfo.contact }}</p>
-    <p>Contact E-mail: {{ contactInfo.contact_email }}</p>
+
+    <form class="form-horizontal" role="form">
+        <fieldset disabled="disabled">
+        <!-- section 1 -->
+    <%= render partial: "partials/contact_info" %>
+
+    <!-- section 2 -->
+    <%= render partial: "partials/organization" %>
+
+    <!-- section 3 -->
+    <%= render partial: "partials/overview_mission" %>
+
+    <!-- section 4 -->
+    <%= render partial: "partials/vision" %>
+
+    <!-- section 5 -->
+    <%= render partial: "partials/concerns" %>
+
+    <!-- section 6 -->
+    <%= render partial: "partials/challenges_header" %>
+    <%= render partial: "partials/challenges_board" %>
+    <%= render partial: "partials/challenges_operations" %>
+    <%= render partial: "partials/challenges_fund" %>
+    <%= render partial: "partials/challenges_marketing" %>
+    <%= render partial: "partials/challenges_strategic" %>
+    <%= render partial: "partials/challenges_technology" %>
+    <%= render partial: "partials/challenges_other" %>
+    <%= render partial: "partials/total_fte_count" %>
+
+    <!-- additional comments section 7 -->
+    <%= render partial: "partials/additional" %>
+
+    <!-- section 8 -->
+    <%= render partial: "partials/referral" %>
+
+    <!-- section 9 -->
+    <%= render partial: "partials/demographics" %>
+
+    <!-- section 10 -->
+    <%= render partial: "partials/geographical" %>
+        </fieldset>
+    </form>
+    <button type="button" class="btn btn-default" ng-click="openRatingModal()" ng-if="!ratedByUser">Rate</button></h2>
 </div>
-
-<form class="form-horizontal" role="form">
-    <fieldset disabled="disabled">
-    <!-- section 1 -->
-<%= render partial: "partials/contact_info" %>
-
-<!-- section 2 -->
-<%= render partial: "partials/organization" %>
-
-<!-- section 3 -->
-<%= render partial: "partials/overview_mission" %>
-
-<!-- section 4 -->
-<%= render partial: "partials/vision" %>
-
-<!-- section 5 -->
-<%= render partial: "partials/concerns" %>
-
-<!-- section 6 -->
-<%= render partial: "partials/challenges_header" %>
-<%= render partial: "partials/challenges_board" %>
-<%= render partial: "partials/challenges_operations" %>
-<%= render partial: "partials/challenges_fund" %>
-<%= render partial: "partials/challenges_marketing" %>
-<%= render partial: "partials/challenges_strategic" %>
-<%= render partial: "partials/challenges_technology" %>
-<%= render partial: "partials/challenges_other" %>
-<%= render partial: "partials/total_fte_count" %>
-
-<!-- additional comments section 7 -->
-<%= render partial: "partials/additional" %>
-
-<!-- section 8 -->
-<%= render partial: "partials/referral" %>
-
-<!-- section 9 -->
-<%= render partial: "partials/demographics" %>
-
-<!-- section 10 -->
-<%= render partial: "partials/geographical" %>
-    </fieldset>
-</form>

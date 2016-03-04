@@ -53,7 +53,8 @@
       "q2": 0,
       "q3": 0,
       "q4": 0,
-      "q5": 0
+      "q5": 0,
+      "comment": ""
     };
 
     $scope.submitRating = function(submittedRatings) {

@@ -15,7 +15,8 @@ class Api::V1::LoiFormsController < ApplicationController
       q2_rating: new_ratings[:q2],
       q3_rating: new_ratings[:q3],
       q4_rating: new_ratings[:q4],
-      q5_rating: new_ratings[:q5]
+      q5_rating: new_ratings[:q5],
+      comment: new_ratings[:comment]
     })
     if loi_rating.save
       render json: {
