@@ -1,5 +1,6 @@
 class Api::V1::LoiFormsController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_admin!
+  before_action :authenticate_super_admin!, only: [:review_ratings]
 
   def show
     @loi_form = LoiForm.find_by(id: params[:id])
@@ -26,5 +27,9 @@ class Api::V1::LoiFormsController < ApplicationController
     else
       render json: loi_rating.errors.to_json, status: :unprocessable_entity
     end
+  end
+
+  def review_ratings
+    @ratings = LoiRating.where(loi_form_id: params[:id])
   end
 end
