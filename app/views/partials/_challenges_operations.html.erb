@@ -4,13 +4,13 @@
   </div>
   <br>
   <div class="col-md-1">
-    <input type="number" class="form-control" name="actual_staff_operations" placeholder="FTEs (actual)" min="0" value="<%= @loi_form.actual_staff_operations %>">
+    <input type="number" class="form-control" name="actual_staff_operations" placeholder="FTEs (actual)" min="0" ng-init="operationsActual=<%= @loi_form.actual_staff_operations %>" ng-model="operationsActual">
   </div>
   <div class="col-md-1">
-    <input type="number" class="form-control" name="current_staff_operations" placeholder="FTEs (current)" min="0" value="<%= @loi_form.current_staff_operations %>">
+    <input type="number" class="form-control" name="current_staff_operations" placeholder="FTEs (current)" min="0" ng-init="operationsCurrent=<%= @loi_form.current_staff_operations %>" ng-model="operationsCurrent">
   </div>
   <div class="col-md-1">
-    <input type="number" class="form-control" name="projected_staff_operations" placeholder="FTEs (projected)" min="0" value="<%= @loi_form.projected_staff_operations %>">
+    <input type="number" class="form-control" name="projected_staff_operations" placeholder="FTEs (projected)" min="0" ng-init="operationsProjected=<%= @loi_form.projected_staff_operations %>" ng-model="operationsProjected">
   </div>
   <br>
 </div>
