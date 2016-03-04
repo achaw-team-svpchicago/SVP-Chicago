@@ -15,6 +15,7 @@
     };
 
     $scope.sortUsers = function(users) {
+      console.log("foo");
       $scope.partners = [];
       $scope.admins = [];
       for (var i = users.length - 1; i >= 0; i--) {
@@ -27,30 +28,6 @@
           break;
         }
       }
-    };
-
-    $scope.invitePartner = function(invitee) {
-      $http.post("/admin_panel", invitee).success(function(response) {
-        console.log(response);
-        if (invitee.super_admin) {
-          $scope.admins.push({
-            firstName: response.first_name,
-            lastName: response.last_name,
-            email: response.email,
-            confirmed: response.confirmed
-          });
-        } else {
-          $scope.partners.push({
-            firstName: response.first_name,
-            lastName: response.last_name,
-            email: response.email,
-            confirmed: response.confirmed
-          });
-        }
-        $scope.invitee = {super_admin: false};
-      }).error(function(response) {
-        console.log(response);
-      });
     };
 
     $scope.toggleEditForm = function(user, index) {
@@ -77,67 +54,59 @@
       $scope.updatedUser = {};
     };
 
-    $scope.updateUser = function(user, updatedUser, index) {
+    $scope.invitePartner = function(invitee) {
+      $http.post("/api/v1/admin_panel", invitee).success(function(response) {
+        $scope.users.push(response.user);
+        $scope.invitee = {super_admin: false};
+        $scope.sortUsers($scope.users);
+      });
+    };
+
+    $scope.updateUser = function(user, updatedUser) {
       var userAttributes = {
         id: user.id,
         first_name: updatedUser.firstName,
         last_name: updatedUser.lastName,
         email: updatedUser.email
       };
-      $http.patch("/admin_panel", userAttributes).then(function(response) {
-        console.log(response);
-        switch (user.superAdmin) {
-        case true:
-          $scope.admins[index] = {
-            email: response.data.email,
-            firstName: response.data.first_name,
-            lastName: response.data.last_name
-          };
-          break;
-        case false:
-          $scope.partners[index] = {
-            email: response.data.email,
-            firstName: response.data.first_name,
-            lastName: response.data.last_name
-          };
-          break;
+      $http.patch("/api/v1/admin_panel/", userAttributes).then(function(response) {
+        $scope.response = response;
+        for (var i = $scope.users.length - 1; i >= 0; i--) {
+          if ($scope.users[i].id === response.data.user.id) {
+            $scope.users[i] = response.data.user;
+          }
         }
+        $scope.sortUsers($scope.users);
         $scope.closeEditForms();
       });
     };
 
-    $scope.deleteUser = function(user, index) {
-      var url = "/admin_panel/" + user.id;
-      $http.delete(url).then(function() {
-        switch (user.superAdmin) {
-        case true:
-          $scope.admins.splice(index, 1);
-          break;
-        case false:
-          $scope.partners.splice(index, 1);
-          break;
+    $scope.deleteUser = function(user) {
+      var url = "/api/v1/admin_panel/" + user.id;
+      $http.delete(url).then(function(response) {
+        for (var i = $scope.users.length - 1; i >= 0; i--) {
+          if ($scope.users[i].id === response.data.user.id) {
+            $scope.users.splice(i, 1);
+          }
         }
+        $scope.sortUsers($scope.users);
       });
     };
 
-    $scope.toggleAdminRights = function(user, index) {
-      var url = "/admin_panel/" + user.id;
-      $http.patch(url).then(function() {
-        switch (user.superAdmin) {
-        case true:
-          $scope.admins.splice(index, 1);
-          $scope.partners.push(user);
-          break;
-        case false:
-          $scope.partners.splice(index, 1);
-          $scope.admins.push(user);
-          break;
+    $scope.toggleAdminRights = function(user) {
+      var url = "/api/v1/admin_panel/" + user.id;
+      $http.patch(url).then(function(response) {
+        for (var i = $scope.users.length - 1; i >= 0; i--) {
+          if ($scope.users[i].id === response.data.user.id) {
+            $scope.users[i] = response.data.user;
+          }
         }
+        $scope.sortUsers($scope.users);
       });
     };
 
     $scope.resendActivation = function(user) {
-      var url = "/admin_panel/" + user.id;
+      var url = "/api/v1/admin_panel/" + user.id;
       $http.post(url).then(function(response) {
         console.log(response);
       });
