@@ -34,8 +34,7 @@
   </div>
   <div class="checkbox">
     <label><input type="checkbox" name="sectors[]" value="other"<% if @loi_form.sectors %> <% if @loi_form.sectors.include? "other" %> checked<% end %><% end %>>Other</label>
-    <!-- Why doesn't other_sectors show up in new form if redirected back after invalid submission? Works in show-->
-    <label for="other_sectors"><input type="text" id="other_sectors" placeholder="(Please specify)" value="<%= @loi_form.other_sectors %>"></label>
+    <label for="other_sectors"></label><input type="text" name="other_sectors" placeholder="(Please specify)" value="<%= @loi_form.other_sectors %>">
   </div>
 </div>
 <hr> 
