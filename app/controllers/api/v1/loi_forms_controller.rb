@@ -1,5 +1,6 @@
 class Api::V1::LoiFormsController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_admin!
+  before_action :authenticate_super_admin!, only: [:review_ratings]
 
   def show
     @loi_form = LoiForm.find_by(id: params[:id])
@@ -15,7 +16,8 @@ class Api::V1::LoiFormsController < ApplicationController
       q2_rating: new_ratings[:q2],
       q3_rating: new_ratings[:q3],
       q4_rating: new_ratings[:q4],
-      q5_rating: new_ratings[:q5]
+      q5_rating: new_ratings[:q5],
+      comment: new_ratings[:comment]
     })
     if loi_rating.save # should be refactored to render jbuilder
       render json: {
@@ -25,5 +27,9 @@ class Api::V1::LoiFormsController < ApplicationController
     else
       render json: loi_rating.errors.to_json, status: :unprocessable_entity
     end
+  end
+
+  def review_ratings
+    @ratings = LoiRating.where(loi_form_id: params[:id])
   end
 end

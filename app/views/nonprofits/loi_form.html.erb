@@ -1,3 +1,15 @@
+<% if @loi_form.errors.any? %>
+  <div id="error_explanation" class="well">
+    <h2><%= pluralize(@loi_form.errors.count, "error") %> prohibited your letter of interest from being saved:</h2>
+ 
+    <ul>
+    <% @loi_form.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>2016 SVP Chicago Letter of Interest </h1>
 <h2>Sector Focus:  Breaking the Cycle of Poverty</h2>
 <h3>Completing this Form:</h3>
@@ -25,16 +37,19 @@
 <%= render partial: "partials/concerns" %>
 
 <!-- section 6 -->
-<%= render partial: "partials/challenges_header" %>
-<%= render partial: "partials/challenges_board" %>
-<%= render partial: "partials/challenges_operations" %>
-<%= render partial: "partials/challenges_fund" %>
-<%= render partial: "partials/challenges_marketing" %>
-<%= render partial: "partials/challenges_strategic" %>
-<%= render partial: "partials/challenges_technology" %>
-<%= render partial: "partials/challenges_other" %>
-<%= render partial: "partials/total_fte_count" %>
-
+<div ng-app="app">
+  <div ng-controller="fteCtrl">
+    <%= render partial: "partials/challenges_header" %>
+    <%= render partial: "partials/challenges_board" %>
+    <%= render partial: "partials/challenges_operations" %>
+    <%= render partial: "partials/challenges_fund" %>
+    <%= render partial: "partials/challenges_marketing" %>
+    <%= render partial: "partials/challenges_strategic" %>
+    <%= render partial: "partials/challenges_technology" %>
+    <%= render partial: "partials/challenges_other" %>
+    <%= render partial: "partials/total_fte_count" %>
+  </div>
+</div>
 
 <!-- additional comments section 7 -->
 <%= render partial: "partials/additional" %>
