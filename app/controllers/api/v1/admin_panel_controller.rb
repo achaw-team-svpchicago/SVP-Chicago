@@ -1,4 +1,7 @@
 class Api::V1::AdminPanelController < ApplicationController
+  before_action :authenticate_super_admin!
+
+  # All methods render jbuilder on the happy path
 
   def show
     @users = User.all
@@ -14,20 +17,20 @@ class Api::V1::AdminPanelController < ApplicationController
 
     begin
       @user.destroy
-    rescue NoMethodError
+    rescue NoMethodError # Should return 404 if user not found
       render json: nil, status: :not_found
     end
   end
 
   def update_user
     @user = User.find_by(id: params[:id])
-    unless @user.update(params[:admin_panel].permit(:first_name, :last_name, :email))
+    unless @user.update(params[:admin_panel].permit(:first_name, :last_name, :email)) #research stron parameters
       render json: @user.errors, status: :unprocessable_entity 
     end
   end  
 
   def invite_user
-    password = SecureRandom.hex
+    password = SecureRandom.hex # generates random password
     @user = User.new({
       first_name: params[:firstName],
       last_name: params[:lastName],
@@ -37,7 +40,7 @@ class Api::V1::AdminPanelController < ApplicationController
     })
 
     if @user.save
-      UserMailer.email_invitation(@user, password)
+      UserMailer.email_invitation(@user, password) # refer to user_mailer
     else
       render json: user.errors, status: :unprocessable_entity
     end

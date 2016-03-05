@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'nonprofits#home'
 
   devise_for :users, controllers: {
-    registrations: 'user/registrations'
+    registrations: 'user/registrations' # this overrides devise's registration controller for our internal one
   }
 
   get '/admin_panel' => 'admin_panel#show'
