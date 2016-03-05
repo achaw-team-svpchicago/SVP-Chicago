@@ -4,12 +4,12 @@
   </div>
   <br>
   <div class="col-md-1">
-    <input type="number" class="form-control" name="actual_staff_total" placeholder="2015" min="0" value="<%= @loi_form.actual_staff_total %>">
+    <input type="number" class="form-control" name="actual_staff_total" placeholder="2015" min="0" value="{{ boardActual + fundActual + marketingActual + operationsActual + otherActual + strategicActual + technologyActual }}">
   </div>
   <div class="col-md-1">
-    <input type="number" class="form-control" name="current_staff_total" placeholder="2016 - This figure should match the Employees field in section 2." min="0" value="<%= @loi_form.current_staff_total %>">
+    <input type="number" class="form-control" name="current_staff_total" placeholder="2016 - This figure should match the Employees field in section 2." min="0" value="{{ boardCurrent + fundCurrent + marketingCurrent + operationsCurrent + otherCurrent + strategicCurrent + technologyCurrent }}">
   </div>
   <div class="col-md-1">
-    <input type="number" class="form-control" name="projected_staff_total" placeholder="2017" min="0" value="<%= @loi_form.projected_staff_total %>">
+    <input type="number" class="form-control" name="projected_staff_total" placeholder="2017" min="0" value="{{ boardProjected + fundProjected + marketingProjected + operationsProjected + otherProjected + strategicProjected + technologyProjected }}">
   </div>
 </div>
