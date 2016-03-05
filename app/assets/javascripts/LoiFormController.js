@@ -4,7 +4,7 @@
   "use strict";
   angular.module("app").controller("LoiFormController", ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
 
-    $scope.setup = function(loiFormId, userId) {
+    $scope.setup = function(loiFormId, userId, superAdmin) {
       var url = "/api/v1/loi_forms/" + loiFormId;
       $http.get(url).then(function(response) {
         $scope.loiForm = response.data.loi_form;
@@ -17,13 +17,14 @@
           loiName: $scope.loiForm.name,
           userId: userId
         };
+        $scope.superAdmin = superAdmin;
       });
     };
 
     $scope.openRatingModal = function() {
       var modalInstance = $uibModal.open({
         animation: true,
-        templateUrl: 'loiModalContent.html',
+        templateUrl: 'loiRatingContent.html',
         controller: 'LoiModalCtrl',
         size: "md",
         resolve: {
@@ -40,20 +41,78 @@
       });
     };
 
+    $scope.openReviewModal = function() {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'loiReviewContent.html',
+        controller: 'LoiModalCtrl',
+        size: 'lg',
+        resolve: {
+          modalData: function() {
+            return $scope.modalData.loiFormId;
+          }
+        }
+      });
+
+      modalInstance.result;
+    };
+
     window.$scope = $scope;
   }]);
 
   angular.module("app").controller("LoiModalCtrl", ["$scope", "$http", "$uibModalInstance", "modalData", function($scope, $http, $uibModalInstance, modalData) {
+    $scope.modalData = modalData;
 
-    $scope.loiName = modalData.loiName;
-    $scope.ratings = {
-      userId: modalData.userId,
-      loiFormId: modalData.loiFormId,
-      "q1": 0,
-      "q2": 0,
-      "q3": 0,
-      "q4": 0,
-      "q5": 0
+    $scope.setupRating = function() {
+      $scope.loiName = $scope.modalData.loiName;
+      $scope.ratings = {
+        userId: $scope.modalData.userId,
+        loiFormId: $scope.modalData.loiFormId,
+        "q1": 0,
+        "q2": 0,
+        "q3": 0,
+        "q4": 0,
+        "q5": 0,
+        "comment": ""
+      };
+    };
+
+    $scope.setupReview = function() {
+      var url = "/api/v1/loi_forms/review/" + $scope.modalData;
+      $http.get(url).then(function(response) {
+        $scope.ratings = response.data.ratings;
+        $scope.totalAverage = calculateAverage(response.data.ratings);
+        calculateTotals(response.data.ratings);
+      }, function(errors) {
+        console.log(errors);
+      });
+    };
+
+    var calculateAverage = function(ratings) {
+      var sum = 0;
+      for (var i = ratings.length - 1; i >= 0; i--) {
+        sum += ratings[i].average;
+      }
+      return sum / ratings.length; //Note that this should probably be upgraded to round percentage to 2 decimals.
+    };
+
+    var calculateTotals = function(ratings) {
+      $scope.totalYes = 0;
+      $scope.totalMaybe = 0;
+      $scope.totalNo = 0;
+      for (var i = ratings.length - 1; i >= 0; i--) {
+        switch (ratings[i].q5) {
+        case "Yes":
+          $scope.totalYes += 1;
+          break;
+        case "Maybe":
+          $scope.totalMaybe += 1;
+          break;
+        case "No":
+          $scope.totalNo += 1;
+          break;
+        }
+      }
     };
 
     $scope.submitRating = function(submittedRatings) {
@@ -67,7 +126,7 @@
       });
     };
     
-    $scope.cancelRating = function() {
+    $scope.closeModal = function() {
       $uibModalInstance.dismiss('cancel');
     };
 
