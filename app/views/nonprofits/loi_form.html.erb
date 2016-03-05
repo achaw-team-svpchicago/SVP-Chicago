@@ -1,3 +1,15 @@
+<% if @loi_form.errors.any? %>
+  <div id="error_explanation" class="well">
+    <h2><%= pluralize(@loi_form.errors.count, "error") %> prohibited your letter of interest from being saved:</h2>
+ 
+    <ul>
+    <% @loi_form.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>2016 SVP Chicago Letter of Interest </h1>
 <h2>Sector Focus:  Breaking the Cycle of Poverty</h2>
 <h3>Completing this Form:</h3>
