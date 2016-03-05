@@ -30,9 +30,9 @@ class NonprofitsController < ApplicationController
       flash[:success] = "Success! You've successfully submitted a letter of interest to SVP Chicago."
       redirect_to '/'
     else
-      @loi_form.errors.full_messages.each do |error|
-        flash[:warning] = error
-      end
+      # @loi_form.errors.full_messages.each do |error|
+      #   flash[:warning] = error
+      # end
       render :action => 'loi_form'
     end
   end
