@@ -9,12 +9,14 @@
         $scope.users = response.users;
         $scope.sortUsers($scope.users);
         $scope.invitee = {super_admin: false};
-        $scope.showPartnerEditForm = [];
+        $scope.showPartnerEditForm = []; //These arrays control the visibility of edit forms on the DOM.
         $scope.showAdminEditForm = [];
       });
     };
 
     $scope.sortUsers = function(users) {
+      /* This function sorts users into admin and parter tables. It is called to reset the
+      state of the user tables in a functional manner */
       console.log("foo");
       $scope.partners = [];
       $scope.admins = [];
@@ -36,7 +38,7 @@
         $scope.showPartnerEditForm[index] = false;
       } else {
         $scope.closeEditForms();
-        $scope.updatedUser = Object.create(user);
+        $scope.updatedUser = Object.create(user); //updatedUser = user caused pointing issues
         switch (user.superAdmin) {
         case true:
           $scope.showAdminEditForm[index] = true;
@@ -76,7 +78,7 @@
             $scope.users[i] = response.data.user;
           }
         }
-        $scope.sortUsers($scope.users);
+        $scope.sortUsers($scope.users); //reset user tables with updated list of users
         $scope.closeEditForms();
       });
     };
