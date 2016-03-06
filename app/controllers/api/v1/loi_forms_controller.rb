@@ -19,7 +19,7 @@ class Api::V1::LoiFormsController < ApplicationController
       q5_rating: new_ratings[:q5],
       comment: new_ratings[:comment]
     })
-    if loi_rating.save
+    if loi_rating.save # should be refactored to render jbuilder
       render json: {
         average_rating: loi_rating.average,
         invited: loi_rating.q5_rating

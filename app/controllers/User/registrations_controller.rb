@@ -2,47 +2,46 @@ class User::RegistrationsController < Devise::RegistrationsController
 before_filter :configure_sign_up_params, only: [:create]
 before_filter :configure_account_update_params, only: [:update]
 
+  # NOTE: unfound actions refer to parent class
+
   # GET /resource/sign_up
   def new
-    redirect_to '/'
+    redirect_to '/' #disabled to prevent users from creating accounts on their own
     # super
   end
 
   # POST /resource
-  def create
-    super
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
-  def edit
-    if params[:event] == "welcome"
-      flash[:warning] = "Welcome to SVP Chicago! Please update you password here in order to begin reviewing non-profits. Thank you!."
-    end
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   def update
     super
-    unless current_user.confirmed
+    unless current_user.confirmed # Confirms user upon updating their password
       current_user.update(confirmed: true)
       flash[:success] = "Your account has been confirmed! You can now browse nonprofit submissions."
     end
   end
 
-  # DELETE /resource
-  def destroy
-    super
-  end
+  # # DELETE /resource
+  # def destroy
+  #   super
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
   # cancel oauth signing in/up in the middle of the process,
   # removing all OAuth session data.
-  def cancel
-    super
-  end
+  # def cancel
+  #   super
+  # end
 
   protected
 

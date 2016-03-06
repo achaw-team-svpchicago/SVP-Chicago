@@ -3,6 +3,11 @@
 (function() {
   "use strict";
   angular.module("app").controller("LoiFormController", ["$scope", "$http", "$uibModal", function($scope, $http, $uibModal) {
+    /*
+    Note that the $uibModal documentation on https://angular-ui.github.io/bootstrap/
+    is out of date. I recommend building any modals using this controller and it's
+    corresponding view as a template.
+    */
 
     $scope.setup = function(loiFormId, userId, superAdmin) {
       var url = "/api/v1/loi_forms/" + loiFormId;
@@ -22,19 +27,23 @@
     };
 
     $scope.openRatingModal = function() {
-      var modalInstance = $uibModal.open({
+      var modalInstance = $uibModal.open({ //creates new modal instance with the following properties
         animation: true,
         templateUrl: 'loiRatingContent.html',
         controller: 'LoiModalCtrl',
         size: "md",
         resolve: {
+          /*
+          Modals operate on a different controller and scope. Build a variable to pass
+          any data needed from this scope to the modal.
+          */
           modalData: function() {
             return $scope.modalData;
           }
         }
       });
 
-      modalInstance.result.then(function(modalResponse) {
+      modalInstance.result.then(function(modalResponse) { //This funciton is run upon closing the modal
         $scope.ratedByUser = true;
         $scope.userAverageRating = modalResponse.average_rating;
         $scope.userInvitedNonProfit = modalResponse.invited;
@@ -60,7 +69,7 @@
     window.$scope = $scope;
   }]);
 
-  angular.module("app").controller("LoiModalCtrl", ["$scope", "$http", "$uibModalInstance", "modalData", function($scope, $http, $uibModalInstance, modalData) {
+  angular.module("app").controller("LoiModalCtrl", ["$scope", "$http", "$uibModalInstance", "modalData", function($scope, $http, $uibModalInstance, modalData) { //note that modalData is passed here
     $scope.modalData = modalData;
 
     $scope.setupRating = function() {
@@ -126,7 +135,7 @@
       });
     };
     
-    $scope.closeModal = function() {
+    $scope.closeModal = function() { //this closes the modal without calling the above result function
       $uibModalInstance.dismiss('cancel');
     };
 

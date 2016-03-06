@@ -36,7 +36,7 @@
                             <th>Admin Rights</th>
                         </tr></thead>
                         <tbody>
-                            <tr ng-repeat="partner in partners">
+                            <tr ng-repeat="partner in partners"> <!-- Pattern set up to switch data fields to inputs if edit view is opened -->
                                 <td ng-if="!showPartnerEditForm[$index]">{{ partner.firstName }}</td>
                                 <td ng-if="showPartnerEditForm[$index]"><input type="text" ng-model="updatedUser.firstName"></td>
                                 
