@@ -1,5 +1,4 @@
 class LoiForm < ActiveRecord::Base
-  has_many :answers
   has_many :loi_ratings
   validates :organization, presence: true
   validates :executive, presence: true
