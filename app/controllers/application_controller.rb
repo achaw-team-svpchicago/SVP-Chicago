@@ -18,9 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_super_admin!
-    authenticate_confirmed!
-    unless current_user.super_admin
-      redirect_to '/'
+    if user_signed_in?
+      authenticate_confirmed!
+      redirect_to '/' unless current_user.super_admin
+    else
+      redirect_to '/users/sign_in'
     end
   end
 

@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe LoiRating, :type => :model do
   context 'Associations' do
-    it "has one user" do
+    it "has one User" do
       user = FactoryGirl.create(:user)
       loi_rating = FactoryGirl.create(:loi_rating, user: user)
       expect(loi_rating.user).to eq(user)
     end
 
-    it "has one LOI Form" do
+    it "has one LoiForm" do
       loi_form = FactoryGirl.create(:loi_form)
       loi_rating = FactoryGirl.create(:loi_rating, loi_form: loi_form)
       expect(loi_rating.loi_form).to eq(loi_form)
