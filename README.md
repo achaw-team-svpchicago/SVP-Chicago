@@ -4,7 +4,7 @@ This app relies on devise, mailgun-ruby, angular-ui-bootstrap-rails, dotenv-rail
 
 ### How to access staging and production and deploy to those environments:
 
-Set up git remote: center.heroku.com/articles/git###creating-a-heroku-remote
+Set up git remote: center.heroku.com/articles/git#creating-a-heroku-remote
 
 Once you're added as a collobarator on Heroku for product and staging, you can create remotes with the commands below:
 
