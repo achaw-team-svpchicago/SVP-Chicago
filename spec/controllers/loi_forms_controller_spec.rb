@@ -58,7 +58,7 @@ RSpec.describe LoiFormsController, :type => :controller do
     before :each do
       form1 = FactoryGirl.create(:loi_form)
       form2 = FactoryGirl.create(:loi_form)
-      @loi_forms = [form1, form2]
+      @loi_forms = LoiForm.all
     end
 
     context 'User is not an SVP partner' do
