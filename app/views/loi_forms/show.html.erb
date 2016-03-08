@@ -156,21 +156,19 @@
     <%= render partial: "partials/concerns" %>
 
 <!-- section 6 -->
-<!-- </fieldset> -->
-<div ng-app="app">
-    <div ng-controller="fteCtrl">
-        <%= render partial: "partials/challenges_header" %>
-        <%= render partial: "partials/fte_partials_show/challenges_board" %>
-        <%= render partial: "partials/fte_partials_show/challenges_operations" %>
-        <%= render partial: "partials/fte_partials_show/challenges_fund" %>
-        <%= render partial: "partials/fte_partials_show/challenges_marketing" %>
-        <%= render partial: "partials/fte_partials_show/challenges_strategic" %>
-        <%= render partial: "partials/fte_partials_show/challenges_technology" %>
-        <%= render partial: "partials/fte_partials_show/challenges_other" %>
-        <%= render partial: "partials/fte_partials_show/total_fte_count" %>
-    </div>
-</div>
-<!-- <fieldset disabled="disabled"> -->
+<!-- These fte_partials_show partials don't have angular -->
+
+    <%= render partial: "partials/challenges_header" %>
+    <%= render partial: "partials/fte_partials_show/challenges_board" %>
+    <%= render partial: "partials/fte_partials_show/challenges_operations" %>
+    <%= render partial: "partials/fte_partials_show/challenges_fund" %>
+    <%= render partial: "partials/fte_partials_show/challenges_marketing" %>
+    <%= render partial: "partials/fte_partials_show/challenges_strategic" %>
+    <%= render partial: "partials/fte_partials_show/challenges_technology" %>
+    <%= render partial: "partials/fte_partials_show/challenges_other" %>
+    <%= render partial: "partials/fte_partials_show/total_fte_count" %>
+
+
 <!-- additional comments section 7 -->
 <%= render partial: "partials/additional" %>
 

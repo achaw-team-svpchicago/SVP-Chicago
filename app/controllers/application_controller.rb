@@ -10,9 +10,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_admin!
-    authenticate_confirmed!
-    unless user_signed_in?
-      redirect_to '/'
+    if user_signed_in?
+      authenticate_confirmed!
+    else
+      redirect_to '/users/sign_in'
     end
   end
 
@@ -26,9 +27,13 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_confirmed!
-    unless current_user.confirmed
-      redirect_to '/users/edit'
-      flash[:danger] = "Please update you password to confirm your account before viewing this page!"
+    begin
+      unless current_user.confirmed
+        redirect_to '/users/edit'
+        flash[:danger] = "Please update your password to confirm your account before viewing this page!"
+      end
+    rescue NoMethodError
+      redirect_to '/users/sign_in'
     end
   end
 end
