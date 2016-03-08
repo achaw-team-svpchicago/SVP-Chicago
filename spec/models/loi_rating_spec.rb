@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe LoiRating, :type => :model do
+  context 'Associations' do
+    it "has one User" do
+      user = FactoryGirl.create(:user)
+      loi_rating = FactoryGirl.create(:loi_rating, user: user)
+      expect(loi_rating.user).to eq(user)
+    end
+
+    it "has one LoiForm" do
+      loi_form = FactoryGirl.create(:loi_form)
+      loi_rating = FactoryGirl.create(:loi_rating, loi_form: loi_form)
+      expect(loi_rating.loi_form).to eq(loi_form)
+    end
+  end
+
   it "is valid when q1 through q4 are integers between 1 and 5, and q5 is either 'Yes', 'Maybe' or 'No'" do
     loi_rating = FactoryGirl.create(:loi_rating)
     expect(loi_rating).to be_valid

@@ -7,13 +7,15 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     created_at { DateTime.current }
     password { Faker::Lorem.characters(10) }
-
-    factory :admin do
-       admin true
-    end
+    confirmed true
+    admin true
 
     factory :super_admin do
       super_admin true
+    end
+
+    factory :unconfirmed do
+      confirmed false
     end
   end
 end
