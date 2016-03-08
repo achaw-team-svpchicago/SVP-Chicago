@@ -13,7 +13,6 @@ RSpec.describe AdminPanelController, :type => :controller do
 
     context "admin" do
       before :each do
-        @request.env["devise.mapping"] = Devise.mappings[:user]
         sign_in FactoryGirl.create(:user)
       end
 
@@ -27,7 +26,6 @@ RSpec.describe AdminPanelController, :type => :controller do
 
     context "super admin" do
       before :each do
-        @request.env["devise.mapping"] = Devise.mappings[:user]
         sign_in FactoryGirl.create(:super_admin)
       end
 
