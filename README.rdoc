@@ -1,28 +1,53 @@
-== README
+# Dependencies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app relies on devise, mailgun-ruby, angular-ui-bootstrap-rails, dotenv-rails, puma and postgres. All of these can be pulled in from the gemfile by running bundle.
 
-Things you may want to cover:
+# How to access staging and production and deploy to those environments:
 
-* Ruby version
+Set up git remote: center.heroku.com/articles/git#creating-a-heroku-remote
 
-* System dependencies
+Once you're added as a collobarator on Heroku for product and staging, you can create remotes with the commands below:
 
-* Configuration
+``` 
+git remote add staging git.heroku.com/staging-svp-chicago.git
+git remote add production git.heroku.com/production-svp-chicago.git 
+```
 
-* Database creation
+To push to one of these, use this command:
 
-* Database initialization
+'''
+git push <environment> <branch>
+'''
 
-* How to run the test suite
+# Setting up a local database populated with sample data:
 
-* Services (job queues, cache servers, search engines, etc.)
+Locally, run:
 
-* Deployment instructions
+'''
+rake db:create
+rake db:migrate
+rake db:seed <- To pull in some seed data
+'''
 
-* ...
+For heroku environments, run commands like so:
 
+'''
+heroku run <command> –remote <environment>
+'''
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+# List of environment variables that need to be included in .env (not provided here):
+
+'''
+MAILGUN_API_KEY=<provided seperately>
+ACTION_MAILER_DOMAIN=<provided seperately> 
+ACTION_MAILER_USER_NAME=<provided seperately> 
+ACTION_MAILER_PASSWORD=<provided seperately>
+SVP_EMAIL=<provided seperately>
+ENVIRONMENT_URL=<put domain here>
+'''
+
+# Notes:
+
+Please read the comments in the code for notes on how things are set up.
+
+Our test suite has relavant and passing tests, but we were not able to complete all tests.
