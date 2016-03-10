@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   get '/loi_forms' => 'loi_forms#index'
   get '/loi_forms/:id' => 'loi_forms#show'
 
-
+  get '/rfp_forms' => 'rfp_forms#index'
+  get '/rfp_forms/:id' => 'rfp_forms#show' 
+  get '/rfp_form' => 'rfp_forms#rfp_form'
+  post '/rfp_forms' => 'rfp_forms#create'
+  
   namespace :api do
     namespace :v1 do
       get '/loi_forms/:id' => 'loi_forms#show'
