@@ -1,0 +1,174 @@
+<h1><center>Request for Investment Proposal</center></h1>
+  
+<p>Social Venture Partners Chicago has sent this request for investment proposal (RFP) to a select group of 12 nonprofit organizations in the Chicagoland area. Through this web application, we hope to gather information we need to choose how to invest our money, time, and expertise to successfully address breaking the poverty cycle.</p>
+  
+<p>We will make a three year commitment to provide the selected organization with:</p>
+  <ul>
+   <li>Capacity-building support</li>
+   <li>$25,000 for general operating support – renewable annually (up to three years)</li>
+  </ul>
+ 
+<p>We look forward to your submission!</p>
+ 
+ 
+<p><bold>Using this Form:</bold>Please enter information directly into this form.</p>
+  <ul>
+    <li>If you find an item confusing, please feel free to contact us. We understand that some of our nomenclature could be unfamiliar. We also understand that you may not yet have established some capabilities or processes, and indicating that fact by inserting “Not Yet Established” or “To Be Determined” is completely acceptable.</li>
+    <li>Brevity will be highly advantageous to you during our review process.</li>
+  </ul>
+  
+<p>For questions about items in the RFP, contact Colleen Scrivner, SVP Chicago director of marketing and operations, at colleen@svpchicago.org</p>
+  
+ 
+<h1> SVP Chicago Request for Investment Proposal</h1>
+  
+<h2> Sector Focus: Breaking the Poverty Cycle</h2>
+
+<%= form_for @rfp_form, url: {action: "create"}, html: {class: 'form-horizontal'} do |f| %>
+   <h3 class="form-title well">1. Contact Information</h3>
+   
+   <div class="form-group">
+     <%= f.label :organization, class: 'control-label col-sm-2' %>
+     <div class="col-sm-10">
+       <%= f.text_field :organization, class: 'form-control' %>
+     </div>
+   </div>
+   
+   <div class="form-group">
+     <%= f.label :address, class: 'control-label col-sm-2' %>
+     <div class="col-sm-10">
+       <%= f.text_field :address, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :organization_phone, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :organization_phone, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :executive_director, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :executive_director, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :executive_director_phone, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :executive_director_phone, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :executive_director_email, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :executive_director_email, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :proposal_contact, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :proposal_contact, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :proposal_contact_phone, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :proposal_contact_phone, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :proposal_contact_email, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :proposal_contact_email, class: 'form-control' %>
+     </div>
+   </div>
+
+  <h3 class="form-title well">2. Organization</h3>
+  
+  <div class="form-group">
+     <%=f.label :number_of_employees, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :number_of_employees, class: 'form-control' %>
+     </div>
+   </div>
+   
+   <div class="form-group">
+     <%=f.label :number_of_volunteers, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :number_of_volunteers, class: 'form-control' %>
+     </div>
+   </div>
+
+   <div class="form-group">
+     <%=f.label :number_of_active_board_members, class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+       <%=f.text_field :number_of_active_board_members, class: 'form-control' %>
+     </div>
+   </div>
+
+   
+
+   
+   <h3 class="form-title well">3. History</h3>
+
+   <div class="form-group">
+     <%=f.label :history, "Provide a brief summary of your organization’s history", class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+        <%= f.text_area :history, size: "60x12" %>
+    </div>
+  </div>
+
+  <h3 class="form-title well">5. Impact on Sector</h3>
+
+  <div class="form-group">
+     <%=f.label :impact_on_sector, "Indicate the extent to which your program(s) and/or services possess any of the following attributes:  (a) have potential for increasing the numbers served; (b) can create leverage by spreading of innovative program model; and/or (c) is scalable/replicable in other locations and/or organizations.", class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+        <%= f.text_area :impact_on_sector, size: "60x12" %>
+     </div>
+  </div>
+
+  <h3 class="form-title well">6. Results and Measurements</h3>
+
+  <div class="form-group">
+     <%=f.label :results_and_measurements, "How do you know when you have accomplished your mission and program goals? What are your indicators of success and how do you measure them? If you have quantifiable, evaluative data, please list it.", class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+        <%= f.text_area :results_and_measurements, size: "60x12" %>
+     </div>
+  </div>
+
+  <h3 class="form-title well">7. Organization's Priorities and Goals</h3>
+
+  <div class="form-group">
+     <%=f.label :priorities_and_goals, "Describe your organization’s top priorities and goals, both short term (over the next year) and long term (over three to five years).", class: 'control-label col-sm-2' %>
+     <div class='col-sm-10'>
+        <%= f.text_area :results_and_measurements, size: "60x12" %>
+     </div>
+  </div>
+
+   <h3 class="form-title well">8. Capacity Building Needs </h3>
+   
+   <p> Please read the attached document<bold> "Overview of Social Venture Partners’ Capacity Building Model”<bold> before completing this section. The main goal of our relationships with investees is to support the development of the organization as a whole. SVP Chicago engages as a consultative partner, working collaboratively to grow your organizational capacity and ensure your sustainability. SVP Chicago Partners provide mentoring, time and expertise in capacity building areas</p> 
+
+   
+
+
+
+
+
+
+
+
+
+
+
+   
+ 
+   <%= f.submit "Create" %>
+<% end %>

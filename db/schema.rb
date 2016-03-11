@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306200418) do
+ActiveRecord::Schema.define(version: 20160311024458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,71 @@ ActiveRecord::Schema.define(version: 20160306200418) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "comment"
+  end
+
+  create_table "rfp_forms", force: :cascade do |t|
+    t.string   "organization"
+    t.string   "address"
+    t.string   "organization_phone"
+    t.string   "executive_director"
+    t.string   "executive_director_phone"
+    t.string   "executive_director_email"
+    t.string   "proposal_contact"
+    t.string   "proposal_contact_phone"
+    t.string   "proposal_contact_email"
+    t.integer  "number_of_employees"
+    t.integer  "number_of_volunteers"
+    t.integer  "number_of_active_board_members"
+    t.integer  "organizational_budget"
+    t.text     "history"
+    t.text     "current_programs"
+    t.string   "program"
+    t.string   "target_population"
+    t.integer  "current_number_served"
+    t.integer  "ages_served"
+    t.string   "area_served"
+    t.string   "program_description"
+    t.string   "issue"
+    t.string   "focus"
+    t.string   "effectiveness"
+    t.text     "impact_on_sector"
+    t.text     "results_and_measurements"
+    t.text     "priorities_and_goals"
+    t.text     "building_needs"
+    t.text     "projects"
+    t.text     "activities"
+    t.string   "name"
+    t.string   "title_and_bio"
+    t.string   "leadership_changes"
+    t.string   "ensure_success"
+    t.string   "board_member"
+    t.string   "background"
+    t.string   "meetings"
+    t.string   "percentage_of_board_members"
+    t.string   "fiscal_year_end"
+    t.string   "current_year_end"
+    t.integer  "revenues"
+    t.integer  "expenditures"
+    t.string   "frequency"
+    t.string   "expectations"
+    t.string   "spending"
+    t.integer  "allocation_percentage"
+    t.string   "donations"
+    t.string   "grants"
+    t.integer  "generated_revenue"
+    t.string   "funding"
+    t.string   "investment"
+    t.string   "national_affiliations"
+    t.string   "responsibilities"
+    t.string   "operations"
+    t.string   "new_programs"
+    t.string   "fund_raising"
+    t.string   "cost_sharing"
+    t.string   "governance"
+    t.string   "leverage"
+    t.text     "legal_actions"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "users", force: :cascade do |t|

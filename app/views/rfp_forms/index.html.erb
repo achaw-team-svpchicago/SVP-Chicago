@@ -1,0 +1,13 @@
+<h2>Submitted Request for Investment Proposal</h2>
+<table>
+  <tr>
+    <th>Organization</th>
+    <th>Date submitted</th>
+  </tr>
+<% @rfp_forms.each do |rfp_form| %>
+  <tr>
+    
+    <td><h4><%= rfp_form.created_at.strftime("%B %d, %Y") %></h4></td>
+  </tr>
+<% end %>
+</table>
