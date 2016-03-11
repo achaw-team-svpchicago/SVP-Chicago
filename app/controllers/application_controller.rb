@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_confirmed!
-<<<<<<< Updated upstream
+ 
     begin
       unless current_user.confirmed
         redirect_to '/users/edit'
@@ -37,12 +37,13 @@ class ApplicationController < ActionController::Base
       end
     rescue NoMethodError
       redirect_to '/users/sign_in'
-=======
+
     return unless user_signed_in?
     unless current_user.confirmed
       redirect_to '/users/edit'
       flash[:danger] = "Please update you password to confirm your account before viewing this page!"
->>>>>>> Stashed changes
+ 
     end
   end
 end
+end 
